@@ -64,22 +64,26 @@ class TemplateCommand(BaseCommand):
         )
 
     def handle(self, app_or_project, name, target=None, **options):
+
+        import pdb;pdb.set_trace() # 断点
+
         self.app_or_project = app_or_project
         self.paths_to_remove = []
         self.verbosity = options['verbosity']
 
-        self.validate_name(name, app_or_project)
+        self.validate_name(name, app_or_project)  # 校验参数是否合法
 
         # if some directory is given, make sure it's nicely expanded
+        #  创建对应的文件
         if target is None:
-            top_dir = path.join(os.getcwd(), name)
+            top_dir = path.join(os.getcwd(), name) # '/Users/dyldengyurin/study_python/my_project6'
             try:
-                os.makedirs(top_dir)
-            except FileExistsError:
+                os.makedirs(top_dir)  # 文件创建
+            except FileExistsError:  # 文件已经存在错误
                 raise CommandError("'%s' already exists" % top_dir)
             except OSError as e:
                 raise CommandError(e)
-        else:
+        else:  # 不为空时，执行路径拼接
             top_dir = os.path.abspath(path.expanduser(target))
             if not os.path.exists(top_dir):
                 raise CommandError("Destination directory '%s' does not "
@@ -97,11 +101,17 @@ class TemplateCommand(BaseCommand):
                               "filenames: %s\n" %
                               (app_or_project, ', '.join(extra_files)))
 
-        base_name = '%s_name' % app_or_project
-        base_subdir = '%s_template' % app_or_project
-        base_directory = '%s_directory' % app_or_project
+        base_name = '%s_name' % app_or_project # project_name
+        base_subdir = '%s_template' % app_or_project  # project_template
+        base_directory = '%s_directory' % app_or_project # project_directory
         camel_case_name = 'camel_case_%s_name' % app_or_project
+        print(f"base_name：{base_name}")
+        print(f"base_subdir：{base_subdir}")
+        print(f"base_directory：{base_directory}")
+
+        # project -> Project: title的目的就是第一个字母大写
         camel_case_value = ''.join(x for x in name.title() if x != '_')
+        print(f"camel_case_name：{camel_case_value}") # MyProject3 -> 原来输入的是 my_project3 转换成 MyProject3
 
         context = Context(dict(options, **{
             base_name: name,
@@ -109,17 +119,22 @@ class TemplateCommand(BaseCommand):
             camel_case_name: camel_case_value,
             'docs_version': get_docs_version(),
             'django_version': django.__version__,
-        }), autoescape=False)
+        }), autoescape=False)  ##  Context : 渲染一些数据
 
         # Setup a stub settings environment for template rendering
+        #  django 是否安装
         if not settings.configured:
+            # TODO：django的配置
             settings.configure()
             django.setup()
-
+        # django 模版
         template_dir = self.handle_template(options['template'],
                                             base_subdir)
         prefix_length = len(template_dir) + 1
+        print(f"template_dir: {template_dir}")
 
+        # /Users/dyldengyurin/all_env/django-inside-env/lib/python3.6/site-packages/django/conf/project_template
+        # 遍历template_dir 文件价，并将相应的文件复制过来
         for root, dirs, files in os.walk(template_dir):
 
             path_rest = root[prefix_length:]
@@ -185,9 +200,10 @@ class TemplateCommand(BaseCommand):
 
     def handle_template(self, template, subdir):
         """
-        Determine where the app or project templates are.
+        Determine where the app or project templates are. # 确定是app还是项目模版
         Use django.__path__[0] as the default because the Django install
         directory isn't known.
+        使用django.__path__[0]，因为Django的安装目录未知
         """
         if template is None:
             return path.join(django.__path__[0], 'conf', subdir)
@@ -245,6 +261,7 @@ class TemplateCommand(BaseCommand):
         """
         Download the given URL and return the file name.
         """
+
         def cleanup_url(url):
             tmp = url.rstrip('/')
             filename = tmp.split('/')[-1]

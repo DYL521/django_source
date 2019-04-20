@@ -285,7 +285,7 @@ class BaseCommand:
         args = cmd_options.pop('args', ())
         handle_default_options(options)
         try:
-            self.execute(*args, **cmd_options)
+            self.execute(*args, **cmd_options) # 执行命令
         except Exception as e:
             if options.traceback or not isinstance(e, CommandError):
                 raise
@@ -328,11 +328,12 @@ class BaseCommand:
             translation.deactivate_all()
 
         try:
+            # django静态检查系统 1.7
             if self.requires_system_checks and not options.get('skip_checks'):
                 self.check()
             if self.requires_migrations_checks:
                 self.check_migrations()
-            output = self.handle(*args, **options)
+            output = self.handle(*args, **options) # 关键
             if output:
                 if self.output_transaction:
                     connection = connections[options.get('database', DEFAULT_DB_ALIAS)]

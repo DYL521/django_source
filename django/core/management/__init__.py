@@ -60,6 +60,10 @@ def get_commands():
     The dictionary is cached on the first call and reused on subsequent
     calls.
     """
+    # 设置断点
+    # import pdb
+    # pdb.set_trace()
+
     commands = {name: 'django.core' for name in find_commands(__path__[0])}
 
     if not settings.configured:
@@ -192,7 +196,7 @@ class ManagementUtility:
         "django-admin" or "manage.py") if it can't be found.
         """
         # Get commands outside of try block to prevent swallowing exceptions
-        commands = get_commands()
+        commands = get_commands() # 具体干了啥
         try:
             app_name = commands[subcommand]
         except KeyError:
@@ -294,9 +298,12 @@ class ManagementUtility:
         """
         Given the command-line arguments, figure out which subcommand is being
         run, create a parser appropriate to that command, and run it.
+
+        给定命令行参数，找出正在执行的子命令
+        运行，创建一个适合该命令的解析器，然后运行它。
         """
         try:
-            subcommand = self.argv[1]
+            subcommand = self.argv[1] # 实际上就是startproject
         except IndexError:
             subcommand = 'help'  # Display help if no arguments were given.
 
@@ -313,6 +320,9 @@ class ManagementUtility:
         except CommandError:
             pass  # Ignore any option errors at this point.
 
+        # 打入断点
+       # import pdb
+       # pdb.set_trace() # ll 查看函数的全部代码 - 在vim中
         try:
             settings.INSTALLED_APPS
         except ImproperlyConfigured as exc:
@@ -362,7 +372,9 @@ class ManagementUtility:
         elif self.argv[1:] in (['--help'], ['-h']):
             sys.stdout.write(self.main_help_text() + '\n')
         else:
-            self.fetch_command(subcommand).run_from_argv(self.argv)
+            # subcommand = startproject
+            # 加载startproject_module.Command()
+            self.fetch_command(subcommand).run_from_argv(self.argv) #真正执行startproject位置
 
 
 def execute_from_command_line(argv=None):
