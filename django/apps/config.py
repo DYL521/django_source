@@ -87,14 +87,14 @@ class AppConfig: ##123123
             # If import_module succeeds, entry is a path to an app module,
             # which may specify an app config class with default_app_config.
             # Otherwise, entry is a path to an app config class or an error.
-            module = import_module(entry)
+            module = import_module(entry) # 加载
 
         except ImportError:
             # Track that importing as an app module failed. If importing as an
             # app config class fails too, we'll trigger the ImportError again.
             module = None
 
-            mod_path, _, cls_name = entry.rpartition('.')
+            mod_path, _, cls_name = entry.rpartition('.') # 分割字符串
 
             # Raise the original exception when entry cannot be a path to an
             # app config class.
@@ -113,9 +113,9 @@ class AppConfig: ##123123
 
         # If we're reaching this point, we must attempt to load the app config
         # class located at <mod_path>.<cls_name>
-        mod = import_module(mod_path)
+        mod = import_module(mod_path) #
         try:
-            cls = getattr(mod, cls_name)
+            cls = getattr(mod, cls_name) #  加载类
         except AttributeError:
             if module is None:
                 # If importing as an app module failed, that error probably
@@ -126,7 +126,7 @@ class AppConfig: ##123123
 
         # Check for obvious errors. (This check prevents duck typing, but
         # it could be removed if it became a problem in practice.)
-        if not issubclass(cls, AppConfig):
+        if not issubclass(cls, AppConfig): # 检查是否是AppConfig的实例
             raise ImproperlyConfigured(
                 "'%s' isn't a subclass of AppConfig." % entry)
 

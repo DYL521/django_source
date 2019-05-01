@@ -82,10 +82,11 @@ class Apps:
             self.loading = True
 
             # Phase 1: initialize app configs and import app modules.
+            import pdb; pdb.set_trace()
             for entry in installed_apps:
-                if isinstance(entry, AppConfig):
+                if isinstance(entry, AppConfig): # 如果配置apps配置文件写的AppConfig的实例
                     app_config = entry
-                else:
+                else: # 否则应该是字符串！！
                     app_config = AppConfig.create(entry)
                 if app_config.label in self.app_configs:
                     raise ImproperlyConfigured(

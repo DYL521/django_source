@@ -148,9 +148,10 @@ def call_command(command_name, *args, **options):
 class ManagementUtility:
     """
     Encapsulate the logic of the django-admin and manage.py utilities.
+    封装django admin和manage.py实用程序的逻辑。
     """
     def __init__(self, argv=None):
-        self.argv = argv or sys.argv[:]
+        self.argv = argv or sys.argv[:] # argv==None时，sys.argv[:]的值赋值（遍历）
         self.prog_name = os.path.basename(self.argv[0])
         if self.prog_name == '__main__.py':
             self.prog_name = 'python -m django'
@@ -310,10 +311,16 @@ class ManagementUtility:
         # Preprocess options to extract --settings and --pythonpath.
         # These options could affect the commands that are available, so they
         # must be processed early.
+        import pdb;pdb.set_trace()
         parser = CommandParser(None, usage="%(prog)s subcommand [options] [args]", add_help=False)
         parser.add_argument('--settings')
         parser.add_argument('--pythonpath')
         parser.add_argument('args', nargs='*')  # catch-all
+        """
+        CommandParser(prog='django-admin', usage='%(prog)s subcommand [options] [args]', 
+        description=None, formatter_class=<class 'argparse.HelpFormatter'>, 
+        conflict_handler='error', add_help=False)
+        """
         try:
             options, args = parser.parse_known_args(self.argv[2:])
             handle_default_options(options)
@@ -377,7 +384,16 @@ class ManagementUtility:
             self.fetch_command(subcommand).run_from_argv(self.argv) #真正执行startproject位置
 
 
+"""
+django-admin startproject my_project
+"""
 def execute_from_command_line(argv=None):
     """Run a ManagementUtility."""
-    utility = ManagementUtility(argv)
+    import pdb; pdb.set_trace()
+    utility = ManagementUtility(argv) # 创建了一个实体类
+    """
+    utility.argv =  ['/Users/dyldengyurin/all_env/django-inside-env/bin/django-admin', 'startproject', 'my_project']
+    utility.prog_name =  'django-admin'
+    """
     utility.execute()
+    print("开始执行。。。。。。")

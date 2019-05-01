@@ -125,7 +125,7 @@ class TemplateCommand(BaseCommand):
         #  django 是否安装
         if not settings.configured:
             # TODO：django的配置
-            settings.configure()
+            settings.configure() # 初始化settings，为了让他django 的配置
             django.setup()
         # django 模版
         template_dir = self.handle_template(options['template'],
