@@ -66,10 +66,15 @@ def handle_default_options(options):
     so that ManagementUtility can handle them before searching for
     user commands.
     """
-    if options.settings:
+    if options.settings: # Namespace(args=['my_project'], pythonpath=None, settings=None)
         os.environ['DJANGO_SETTINGS_MODULE'] = options.settings
+        print("settings 设置 ....")
     if options.pythonpath:
+        print("pythonpath 设置 ....")
         sys.path.insert(0, options.pythonpath)
+    """
+    if None: 都不执行！
+    """
 
 
 class OutputWrapper(TextIOBase):
@@ -285,7 +290,8 @@ class BaseCommand:
         args = cmd_options.pop('args', ())
         handle_default_options(options)
         try:
-            self.execute(*args, **cmd_options) # 执行命令
+            import pdb;pdb.set_trace()
+            self.execute(*args, **cmd_options) # 开始执行命令
         except Exception as e:
             if options.traceback or not isinstance(e, CommandError):
                 raise
@@ -310,6 +316,12 @@ class BaseCommand:
         controlled by the ``requires_system_checks`` attribute, except if
         force-skipped).
         """
+        """
+        args = ()
+        options = {'verbosity': 1, 'settings': None, 'pythonpath': None, 'traceback': False, 
+        'no_color': False, 'name': 'my_project', 'directory': None, 'template': None, 
+        'extensions': ['py'], 'files': []}
+        """
         if options['no_color']:
             self.style = no_style()
             self.stderr.style_func = None
@@ -331,9 +343,9 @@ class BaseCommand:
             # django静态检查系统 1.7
             if self.requires_system_checks and not options.get('skip_checks'):
                 self.check()
-            if self.requires_migrations_checks:
-                self.check_migrations()
-            output = self.handle(*args, **options) # 关键
+            if self.requires_migrations_checks: # 是否需要migrate检查
+                self.check_migrations() # 检查migrate
+            output = self.handle(*args, **options) # 关键 --->startproject.py=>handle
             if output:
                 if self.output_transaction:
                     connection = connections[options.get('database', DEFAULT_DB_ALIAS)]
@@ -422,6 +434,7 @@ class BaseCommand:
         """
         Print a warning if the set of migrations on disk don't match the
         migrations in the database.
+        如果磁盘上的迁移集与数据库中的迁移不匹配，打印警告。
         """
         from django.db.migrations.executor import MigrationExecutor
         try:

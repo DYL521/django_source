@@ -21,6 +21,7 @@ def find_commands(management_dir):
     """
     Given a path to a management directory, return a list of all the command
     names that are available.
+    给定管理目录的路径，返回所有可用命令名的列表。
     """
     command_dir = os.path.join(management_dir, 'commands')
     return [name for _, name, is_pkg in pkgutil.iter_modules([command_dir])
@@ -32,6 +33,8 @@ def load_command_class(app_name, name):
     Given a command name and an application name, return the Command
     class instance. Allow all errors raised by the import process
     (ImportError, AttributeError) to propagate.
+    给定命令名和应用程序名，返回命令类实例。
+    允许导入进程引发的所有错误（importError，attributeError）要传播。
     """
     module = import_module('%s.management.commands.%s' % (app_name, name))
     return module.Command()
@@ -65,7 +68,18 @@ def get_commands():
     # pdb.set_trace()
 
     commands = {name: 'django.core' for name in find_commands(__path__[0])}
-
+    print("commands: " + str(commands))
+    """
+    {'check': 'django.core', 'compilemessages': 'django.core', 'createcachetable': 'django.core', 
+    'dbshell': 'django.core', 'diffsettings': 'django.core', 'dumpdata': 'django.core', 
+    'flush': 'django.core', 'inspectdb': 'django.core', 'loaddata': 'django.core', 
+    'makemessages': 'django.core', 'makemigrations': 'django.core', 'migrate': 'django.core', 
+    'runserver': 'django.core', 'sendtestemail': 'django.core', 'shell': 'django.core', 
+    'showmigrations': 'django.core', 'sqlflush': 'django.core', 'sqlmigrate': 'django.core', 
+    'sqlsequencereset': 'django.core', 'squashmigrations': 'django.core', 
+    'startapp': 'django.core', 'startproject': 'django.core', 'test': 'django.core', 
+    'testserver': 'django.core'}
+    """
     if not settings.configured:
         return commands
 
@@ -150,8 +164,9 @@ class ManagementUtility:
     Encapsulate the logic of the django-admin and manage.py utilities.
     封装django admin和manage.py实用程序的逻辑。
     """
+
     def __init__(self, argv=None):
-        self.argv = argv or sys.argv[:] # argv==None时，sys.argv[:]的值赋值（遍历）
+        self.argv = argv or sys.argv[:]  # argv==None时，sys.argv[:]的值赋值（遍历）
         self.prog_name = os.path.basename(self.argv[0])
         if self.prog_name == '__main__.py':
             self.prog_name = 'python -m django'
@@ -197,9 +212,9 @@ class ManagementUtility:
         "django-admin" or "manage.py") if it can't be found.
         """
         # Get commands outside of try block to prevent swallowing exceptions
-        commands = get_commands() # 具体干了啥
+        commands = get_commands()  # 具体干了啥
         try:
-            app_name = commands[subcommand]
+            app_name = commands[subcommand]  # app_name = 'django.core'
         except KeyError:
             if os.environ.get('DJANGO_SETTINGS_MODULE'):
                 # If `subcommand` is missing due to misconfigured settings, the
@@ -216,6 +231,7 @@ class ManagementUtility:
             sys.exit(1)
         if isinstance(app_name, BaseCommand):
             # If the command is already loaded, use it directly.
+            # 如果命令已经加载，则直接使用它。
             klass = app_name
         else:
             klass = load_command_class(app_name, subcommand)
@@ -223,7 +239,7 @@ class ManagementUtility:
 
     def autocomplete(self):
         """
-        Output completion suggestions for BASH.
+        Output completion suggestions for BASH. # bash 输出完成建议
 
         The output of this function is passed to BASH's `COMREPLY` variable and
         treated as completion suggestions. `COMREPLY` expects a space
@@ -304,14 +320,15 @@ class ManagementUtility:
         运行，创建一个适合该命令的解析器，然后运行它。
         """
         try:
-            subcommand = self.argv[1] # 实际上就是startproject
+            subcommand = self.argv[1]  # 实际上就是startproject
         except IndexError:
             subcommand = 'help'  # Display help if no arguments were given.
 
         # Preprocess options to extract --settings and --pythonpath.
         # These options could affect the commands that are available, so they
         # must be processed early.
-        import pdb;pdb.set_trace()
+        import pdb;
+        pdb.set_trace()
         parser = CommandParser(None, usage="%(prog)s subcommand [options] [args]", add_help=False)
         parser.add_argument('--settings')
         parser.add_argument('--pythonpath')
@@ -321,21 +338,24 @@ class ManagementUtility:
         description=None, formatter_class=<class 'argparse.HelpFormatter'>, 
         conflict_handler='error', add_help=False)
         """
+        # self.argv: ['/Users/dyldengyurin/all_env/django-inside-env/bin/django-admin', 'startproject', 'my_project']
         try:
+            # options = Namespace(args=['my_project'], pythonpath=None, settings=None)
+            #
             options, args = parser.parse_known_args(self.argv[2:])
             handle_default_options(options)
         except CommandError:
             pass  # Ignore any option errors at this point.
 
         # 打入断点
-       # import pdb
-       # pdb.set_trace() # ll 查看函数的全部代码 - 在vim中
+        # import pdb
+        # pdb.set_trace() # ll 查看函数的全部代码 - 在vim中
         try:
-            settings.INSTALLED_APPS
+            settings.INSTALLED_APPS  # ?? 难懂
         except ImproperlyConfigured as exc:
             self.settings_exception = exc
 
-        if settings.configured:
+        if settings.configured:  # settings.configured = Flase
             # Start the auto-reloading dev server even if the code is broken.
             # The hardcoded condition is a code smell but we can't rely on a
             # flag on the command class because we haven't located it yet.
@@ -363,7 +383,7 @@ class ManagementUtility:
             else:
                 django.setup()
 
-        self.autocomplete()
+        self.autocomplete()  #
 
         if subcommand == 'help':
             if '--commands' in args:
@@ -381,16 +401,19 @@ class ManagementUtility:
         else:
             # subcommand = startproject
             # 加载startproject_module.Command()
-            self.fetch_command(subcommand).run_from_argv(self.argv) #真正执行startproject位置
+            self.fetch_command(subcommand).run_from_argv(self.argv)  # 真正执行startproject位置
 
 
 """
 django-admin startproject my_project
 """
+
+
 def execute_from_command_line(argv=None):
     """Run a ManagementUtility."""
-    import pdb; pdb.set_trace()
-    utility = ManagementUtility(argv) # 创建了一个实体类
+    import pdb;
+    pdb.set_trace()
+    utility = ManagementUtility(argv)  # 创建了一个实体类
     """
     utility.argv =  ['/Users/dyldengyurin/all_env/django-inside-env/bin/django-admin', 'startproject', 'my_project']
     utility.prog_name =  'django-admin'

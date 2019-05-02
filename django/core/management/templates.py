@@ -70,7 +70,6 @@ class TemplateCommand(BaseCommand):
         self.app_or_project = app_or_project
         self.paths_to_remove = []
         self.verbosity = options['verbosity']
-
         self.validate_name(name, app_or_project)  # 校验参数是否合法
 
         # if some directory is given, make sure it's nicely expanded

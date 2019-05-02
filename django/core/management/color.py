@@ -31,8 +31,9 @@ class Style:
 def make_style(config_string=''):
     """
     Create a Style object from the given config_string.
-
+    从给定的配置字符串创建样式对象。
     If config_string is empty django.utils.termcolors.DEFAULT_PALETTE is used.
+    如果config_string为空，则使用django.utils.termcolors.DEFAULT_PALETTE。
     """
 
     style = Style()

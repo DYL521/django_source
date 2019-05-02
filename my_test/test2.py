@@ -9,8 +9,11 @@ def add_argument(self, *args, **kwargs):
     # argument
     chars = "_" # __settings
     print(args)
+    print(type(args)) # tuple
+    print(len(args))
+
     if not args or len(args) == 1 and args[0][0] not in chars:
-        pass
+        print('=====')
 
     # otherwise, we're adding an optional argument
     else:
