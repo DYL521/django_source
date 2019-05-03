@@ -13,38 +13,53 @@ from .config import AppConfig
 class Apps:
     """
     A registry that stores the configuration of installed applications.
-
+    注册并且存储app信息
     It also keeps track of models, e.g. to provide reverse relations.
+    他也会跟踪模型
     """
 
     def __init__(self, installed_apps=()):
         # installed_apps is set to None when creating the master registry
+        # 创建主注册表时，已安装的app设置为None
         # because it cannot be populated at that point. Other registries must
+        # 因为他在那个时候不能填入，其他注册必须
         # provide a list of installed apps and are populated immediately.
+        # 提供已经安装的app列表，并且立即填充
         if installed_apps is None and hasattr(sys.modules[__name__], 'apps'):
             raise RuntimeError("You must supply an installed_apps argument.")
 
         # Mapping of app labels => model names => model classes. Every time a
-        # model is imported, ModelBase.__new__ calls apps.register_model which
-        # creates an entry in all_models. All imported models are registered,
-        # regardless of whether they're defined in an installed application
-        # and whether the registry has been populated. Since it isn't possible
-        # to reimport a module safely (it could reexecute initialization code)
-        # all_models is never overridden or reset.
+        #         # model is imported, ModelBase.__new__ calls apps.register_model which
+        #         # creates an entry in all_models. All imported models are registered,
+        #         # regardless of whether they're defined in an installed application
+        #         # and whether the registry has been populated. Since it isn't possible
+        #         # to reimport a module safely (it could reexecute initialization code)
+        #         # all_models is never overridden or reset.
+        """
+        应用标映射 => 模型名称 => 模型类，每一次
+        模型被导入，ModelBase.__new__ 调用 apps.register_model在all_models创建
+        无论是否在已安装的应用程序中定义它们
+        以及是否已填充注册表。既然不可能
+        安全地重新导入模块（它可以重新执行初始化代码）
+        all_models永远不会被覆盖或重置。
+        """
         self.all_models = defaultdict(OrderedDict)
 
         # Mapping of labels to AppConfig instances for installed apps.
+        # 将标签映射到已安装应用程序的AppConfig实例
         self.app_configs = OrderedDict()
 
         # Stack of app_configs. Used to store the current state in
         # set_available_apps and set_installed_apps.
+        # 堆栈的app_configs。用于将当前状态存储在set_available_apps和set_installed_apps中
         self.stored_app_configs = []
 
         # Whether the registry is populated.
+        # 是否填充了注册表
         self.apps_ready = self.models_ready = self.ready = False
 
         # Lock for thread-safe population.
-        self._lock = threading.RLock()
+        self._lock = threading.RLock()  # 线程安全锁！
         self.loading = False
 
         # Maps ("app_label", "modelname") tuples to lists of functions to be
@@ -63,12 +78,18 @@ class Apps:
         Import each application module and then each model module.
 
         It is thread-safe and idempotent, but not reentrant.
+
+        加载应用程序配置和模型。
+        导入每个应用程序模块，然后导入每个模型模块。
+        它是线程安全和等幂的，但不可重入。
         """
-        if self.ready:
+        if self.ready: # Flase
             return
 
         # populate() might be called by two threads in parallel on servers
         # that create threads before initializing the WSGI callable.
+        # 服务器上的两个线程可以并行调用populate（）。
+        # 在初始化wsgi可调用文件之前创建线程。
         with self._lock:
             if self.ready:
                 return
@@ -82,6 +103,7 @@ class Apps:
             self.loading = True
 
             # Phase 1: initialize app configs and import app modules.
+            # 阶段1：初始化应用程序配置并导入应用程序模块
             import pdb; pdb.set_trace()
             for entry in installed_apps:
                 if isinstance(entry, AppConfig): # 如果配置apps配置文件写的AppConfig的实例
@@ -97,10 +119,11 @@ class Apps:
                 app_config.apps = self
 
             # Check for duplicate app names.
+            # 检查重复的app名称
             counts = Counter(
-                app_config.name for app_config in self.app_configs.values())
+                app_config.name for app_config in self.app_configs.values()) # odict_values([])
             duplicates = [
-                name for name, count in counts.most_common() if count > 1]
+                name for name, count in counts.most_common() if count > 1] # []
             if duplicates:
                 raise ImproperlyConfigured(
                     "Application names aren't unique, "
@@ -109,6 +132,7 @@ class Apps:
             self.apps_ready = True
 
             # Phase 2: import models modules.
+            # 阶段2：导入模型模块
             for app_config in self.app_configs.values():
                 app_config.import_models()
 
@@ -117,13 +141,16 @@ class Apps:
             self.models_ready = True
 
             # Phase 3: run ready() methods of app configs.
-            for app_config in self.get_app_configs():
+            # 阶段3：运行app配置的ready（）方法
+            import pdb;pdb.set_trace()
+            for app_config in self.get_app_configs():# odict_values([])
                 app_config.ready()
 
             self.ready = True
 
     def check_apps_ready(self):
         """Raise an exception if all apps haven't been imported yet."""
+        """如果尚未导入所有应用程序，则引发异常"""
         if not self.apps_ready:
             raise AppRegistryNotReady("Apps aren't loaded yet.")
 
@@ -134,7 +161,8 @@ class Apps:
 
     def get_app_configs(self):
         """Import applications and return an iterable of app configs."""
-        self.check_apps_ready()
+        """ 导入应用程序并且返回可迭代 的app配置"""
+        self.check_apps_ready() # 检查app
         return self.app_configs.values()
 
     def get_app_config(self, app_label):
@@ -354,7 +382,7 @@ class Apps:
     def clear_cache(self):
         """
         Clear all internal caches, for methods that alter the app registry.
-
+        清除所有内部缓存，用于更改app注册表的方法
         This is mostly used in tests.
         """
         # Call expire cache on each model. This will purge

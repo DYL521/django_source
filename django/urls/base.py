@@ -12,9 +12,11 @@ from .utils import get_callable
 # SCRIPT_NAME prefixes for each thread are stored here. If there's no entry for
 # the current thread (which is the only one we ever access), it is assumed to
 # be empty.
+# 脚本\每个线程的名称前缀存储在这里。如果当前线程没有条目（这是我们唯一访问过的线程），则假定它为空。
 _prefixes = local()
 
 # Overridden URLconfs for each thread are stored here.
+# 每个线程的重写urlconfs存储在这里。
 _urlconfs = local()
 
 
@@ -102,10 +104,14 @@ def clear_url_caches():
 def set_script_prefix(prefix):
     """
     Set the script prefix for the current thread.
+
+    设置当前脚本的前缀
+    解释： 如果字符串不是以/结尾，那么就在末尾加/
     """
     if not prefix.endswith('/'):
         prefix += '/'
     _prefixes.value = prefix
+    print("_prefixes： " + str(_prefixes.value))
 
 
 def get_script_prefix():

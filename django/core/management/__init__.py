@@ -353,7 +353,7 @@ class ManagementUtility:
         try:
             settings.INSTALLED_APPS  # ?? 难懂
         except ImproperlyConfigured as exc:
-            self.settings_exception = exc
+            self.settings_exception = exc #
 
         if settings.configured:  # settings.configured = Flase
             # Start the auto-reloading dev server even if the code is broken.

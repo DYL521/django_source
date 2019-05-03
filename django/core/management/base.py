@@ -291,7 +291,7 @@ class BaseCommand:
         handle_default_options(options)
         try:
             import pdb;pdb.set_trace()
-            self.execute(*args, **cmd_options) # 开始执行命令
+            self.execute(*args, **cmd_options) # 开始执行命令 -> templates.py : handle
         except Exception as e:
             if options.traceback or not isinstance(e, CommandError):
                 raise

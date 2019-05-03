@@ -65,7 +65,8 @@ class TemplateCommand(BaseCommand):
 
     def handle(self, app_or_project, name, target=None, **options):
 
-        import pdb;pdb.set_trace() # 断点
+        import pdb;
+        pdb.set_trace()  # 断点
 
         self.app_or_project = app_or_project
         self.paths_to_remove = []
@@ -75,7 +76,7 @@ class TemplateCommand(BaseCommand):
         # if some directory is given, make sure it's nicely expanded
         #  创建对应的文件
         if target is None:
-            top_dir = path.join(os.getcwd(), name) # '/Users/dyldengyurin/study_python/my_project6'
+            top_dir = path.join(os.getcwd(), name)  # '/Users/dyldengyurin/study_python/my_project6'
             try:
                 os.makedirs(top_dir)  # 文件创建
             except FileExistsError:  # 文件已经存在错误
@@ -100,9 +101,9 @@ class TemplateCommand(BaseCommand):
                               "filenames: %s\n" %
                               (app_or_project, ', '.join(extra_files)))
 
-        base_name = '%s_name' % app_or_project # project_name
+        base_name = '%s_name' % app_or_project  # project_name
         base_subdir = '%s_template' % app_or_project  # project_template
-        base_directory = '%s_directory' % app_or_project # project_directory
+        base_directory = '%s_directory' % app_or_project  # project_directory
         camel_case_name = 'camel_case_%s_name' % app_or_project
         print(f"base_name：{base_name}")
         print(f"base_subdir：{base_subdir}")
@@ -110,7 +111,7 @@ class TemplateCommand(BaseCommand):
 
         # project -> Project: title的目的就是第一个字母大写
         camel_case_value = ''.join(x for x in name.title() if x != '_')
-        print(f"camel_case_name：{camel_case_value}") # MyProject3 -> 原来输入的是 my_project3 转换成 MyProject3
+        print(f"camel_case_name：{camel_case_value}")  # MyProject3 -> 原来输入的是 my_project3 转换成 MyProject3
 
         context = Context(dict(options, **{
             base_name: name,
@@ -124,20 +125,21 @@ class TemplateCommand(BaseCommand):
         #  django 是否安装
         if not settings.configured:
             # TODO：django的配置
-            settings.configure() # 初始化settings，为了让他django 的配置
-            django.setup()
+            settings.configure()  # 初始化settings，为了让他django 的配置
+            django.setup()  # 安装app ----> 进行了很多的操作！！
         # django 模版
         template_dir = self.handle_template(options['template'],
                                             base_subdir)
         prefix_length = len(template_dir) + 1
         print(f"template_dir: {template_dir}")
+        print(f"prefix_length: {prefix_length}")  # 102
 
         # /Users/dyldengyurin/all_env/django-inside-env/lib/python3.6/site-packages/django/conf/project_template
         # 遍历template_dir 文件价，并将相应的文件复制过来
         for root, dirs, files in os.walk(template_dir):
 
-            path_rest = root[prefix_length:]
-            relative_dir = path_rest.replace(base_name, name)
+            path_rest = root[prefix_length:]  # ''
+            relative_dir = path_rest.replace(base_name, name)  # base_name = project_name ,name=my_project
             if relative_dir:
                 target_dir = path.join(top_dir, relative_dir)
                 if not path.exists(target_dir):
