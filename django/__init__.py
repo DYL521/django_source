@@ -5,7 +5,7 @@ VERSION = (2, 0, 14, 'alpha', 0)
 __version__ = get_version(VERSION)
 
 
-def setup(set_prefix=True):
+def  setup(set_prefix=True):
     """
     Configure the settings (this happens as a side effect of accessing the
     first setting), configure logging and populate the app registry.

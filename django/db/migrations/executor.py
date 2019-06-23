@@ -14,9 +14,13 @@ class MigrationExecutor:
     """
 
     def __init__(self, connection, progress_callback=None):
-        self.connection = connection
+        # 数据库连接
+        self.connection = connection 
+        # 加载所有的migrations
         self.loader = MigrationLoader(self.connection)
+        # 操作数据库
         self.recorder = MigrationRecorder(self.connection)
+        # 
         self.progress_callback = progress_callback
 
     def migration_plan(self, targets, clean_start=False):

@@ -30,12 +30,12 @@ class AppConfig: ##123123
         if not hasattr(self, 'label'):
             self.label = app_name.rpartition(".")[2]
 
-        # Human-readable name for the application e.g. "Admin".
-        if not hasattr(self, 'verbose_name'):
+        # Human-readable name for the application e.g. "Admin". admin展示的名字
+        if not hasattr(self, 'verbose_name'): 
             self.verbose_name = self.label.title()
 
         # Filesystem path to the application directory e.g.
-        # '/path/to/django/contrib/admin'.
+        # '/path/to/django/contrib/admin'. admin 
         if not hasattr(self, 'path'):
             self.path = self._path_from_module(app_module)
 
@@ -94,7 +94,7 @@ class AppConfig: ##123123
             # app config class fails too, we'll trigger the ImportError again.
             module = None
 
-            mod_path, _, cls_name = entry.rpartition('.') # 分割字符串
+            mod_path, _, cls_name = entry.rpartition('.') # 分割字符串 apps.app.app .APPconfig
 
             # Raise the original exception when entry cannot be a path to an
             # app config class.
@@ -113,7 +113,7 @@ class AppConfig: ##123123
 
         # If we're reaching this point, we must attempt to load the app config
         # class located at <mod_path>.<cls_name>
-        mod = import_module(mod_path) #
+        mod = import_module(mod_path) # 引入模块！
         try:
             cls = getattr(mod, cls_name) #  加载类
         except AttributeError:
@@ -149,7 +149,7 @@ class AppConfig: ##123123
             )
 
         # Entry is a path to an app config class.
-        return cls(app_name, app_module)
+        return cls(app_name, app_module)  # 返回一个app的实例
 
     def get_model(self, model_name, require_ready=True):
         """
@@ -193,7 +193,7 @@ class AppConfig: ##123123
         # 'all_models' attribute of the Apps this AppConfig is attached to.
         self.models = self.apps.all_models[self.label]
 
-        if module_has_submodule(self.module, MODELS_MODULE_NAME):
+        if module_has_submodule(self.module, MODELS_MODULE_NAME): # 
             models_module_name = '%s.%s' % (self.name, MODELS_MODULE_NAME)
             self.models_module = import_module(models_module_name)
 

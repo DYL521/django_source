@@ -239,6 +239,7 @@ class ManagementUtility:
 
     def autocomplete(self):
         """
+         命令自动补全！！
         Output completion suggestions for BASH. # bash 输出完成建议
 
         The output of this function is passed to BASH's `COMREPLY` variable and
@@ -259,7 +260,7 @@ class ManagementUtility:
         and formatted as potential completion suggestions.
         """
         # Don't complete if user hasn't sourced bash_completion file.
-        if 'DJANGO_AUTO_COMPLETE' not in os.environ:
+        if 'DJANGO_AUTO_COMPLETE' not in os.environ: # 环境变量
             return
 
         cwords = os.environ['COMP_WORDS'].split()[1:]
@@ -318,6 +319,10 @@ class ManagementUtility:
 
         给定命令行参数，找出正在执行的子命令
         运行，创建一个适合该命令的解析器，然后运行它。
+        
+        大致分两个部分：
+        1、处理参数
+        2、找到对应的command，并且执行
         """
         try:
             subcommand = self.argv[1]  # 实际上就是startproject
@@ -327,8 +332,8 @@ class ManagementUtility:
         # Preprocess options to extract --settings and --pythonpath.
         # These options could affect the commands that are available, so they
         # must be processed early.
-        import pdb;
-        pdb.set_trace()
+        # import pdb;
+        # pdb.set_trace()
         parser = CommandParser(None, usage="%(prog)s subcommand [options] [args]", add_help=False)
         parser.add_argument('--settings')
         parser.add_argument('--pythonpath')
@@ -350,6 +355,7 @@ class ManagementUtility:
         # 打入断点
         # import pdb
         # pdb.set_trace() # ll 查看函数的全部代码 - 在vim中
+        # 确认settings是否配置
         try:
             settings.INSTALLED_APPS  # ?? 难懂
         except ImproperlyConfigured as exc:
@@ -359,6 +365,10 @@ class ManagementUtility:
             # Start the auto-reloading dev server even if the code is broken.
             # The hardcoded condition is a code smell but we can't rely on a
             # flag on the command class because we haven't located it yet.
+
+            # 如果配置了settings，说明settings加载完成了，接下来就是初始化整个django系统
+            # 当我们使用: python manage.py <>就会运行到这里
+
             if subcommand == 'runserver' and '--noreload' not in self.argv:
                 try:
                     autoreload.check_errors(django.setup)()
@@ -381,9 +391,9 @@ class ManagementUtility:
 
             # In all other cases, django.setup() is required to succeed.
             else:
-                django.setup()
+                django.setup() # 安装django
 
-        self.autocomplete()  #
+        self.autocomplete()  # 命令补全！！
 
         if subcommand == 'help':
             if '--commands' in args:
@@ -400,7 +410,7 @@ class ManagementUtility:
             sys.stdout.write(self.main_help_text() + '\n')
         else:
             # subcommand = startproject
-            # 加载startproject_module.Command()
+            # 加载startproject_module.Command()  # 找到对应的命令调用！
             self.fetch_command(subcommand).run_from_argv(self.argv)  # 真正执行startproject位置
 
 
@@ -411,8 +421,8 @@ django-admin startproject my_project
 
 def execute_from_command_line(argv=None):
     """Run a ManagementUtility."""
-    import pdb;
-    pdb.set_trace()
+    # import pdb;
+    # pdb.set_trace()
     utility = ManagementUtility(argv)  # 创建了一个实体类
     """
     utility.argv =  ['/Users/dyldengyurin/all_env/django-inside-env/bin/django-admin', 'startproject', 'my_project']
@@ -420,3 +430,6 @@ def execute_from_command_line(argv=None):
     """
     utility.execute()
     print("开始执行。。。。。。")
+
+
+

@@ -79,9 +79,9 @@ class Apps:
 
         It is thread-safe and idempotent, but not reentrant.
 
-        加载应用程序配置和模型。
-        导入每个应用程序模块，然后导入每个模型模块。
-        它是线程安全和等幂的，但不可重入。
+        1 - 加载应用程序配置和模型。
+        2 - 导入每个应用程序模块，然后导入每个模型模块。
+        3 - 它是线程安全和等幂的，但不可重入。 调用加载完成的ready事件！（check检查）
         """
         if self.ready: # Flase
             return
@@ -104,19 +104,25 @@ class Apps:
 
             # Phase 1: initialize app configs and import app modules.
             # 阶段1：初始化应用程序配置并导入应用程序模块
-            import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
             for entry in installed_apps:
                 if isinstance(entry, AppConfig): # 如果配置apps配置文件写的AppConfig的实例
                     app_config = entry
                 else: # 否则应该是字符串！！
-                    app_config = AppConfig.create(entry)
+                    app_config = AppConfig.create(entry)# 创建配置
                 if app_config.label in self.app_configs:
                     raise ImproperlyConfigured(
                         "Application labels aren't unique, "
                         "duplicates: %s" % app_config.label)
 
                 self.app_configs[app_config.label] = app_config
-                app_config.apps = self
+                app_config.apps = self  # self 就是下面全局的模块级变量 - 当前对象赋值到各个app的实例中
+
+
+            """
+            面试题：
+                一个字符串各个字符出现的频率，并且排序？
+            """
 
             # Check for duplicate app names.
             # 检查重复的app名称
@@ -133,18 +139,20 @@ class Apps:
 
             # Phase 2: import models modules.
             # 阶段2：导入模型模块
+            import pdb;pdb.set_trace() # 加载model
             for app_config in self.app_configs.values():
                 app_config.import_models()
-
+                
+                # 执行完，app_config就有model这个模块了
             self.clear_cache()
 
             self.models_ready = True
 
             # Phase 3: run ready() methods of app configs.
             # 阶段3：运行app配置的ready（）方法
-            import pdb;pdb.set_trace()
+            import pdb;pdb.set_trace() # ready
             for app_config in self.get_app_configs():# odict_values([])
-                app_config.ready()
+                app_config.ready()  # contrib/admin/apps.py
 
             self.ready = True
 

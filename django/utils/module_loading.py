@@ -62,16 +62,17 @@ def autodiscover_modules(*args, **kwargs):
 
 def module_has_submodule(package, module_name):
     """See if 'module' is in 'package'."""
+    #  查看module 是否在package - 
     try:
-        package_name = package.__name__
-        package_path = package.__path__
+        package_name = package.__name__ # "myapp"
+        package_path = package.__path__ # ['/Users/dyldengyurin/study_python/my_project/myapp']
     except AttributeError:
         # package isn't a package.
         return False
 
-    full_module_name = package_name + '.' + module_name
+    full_module_name = package_name + '.' + module_name # full_module_name = "myapp.models"
     try:
-        return importlib_find(full_module_name, package_path) is not None
+        return importlib_find(full_module_name, package_path) is not None #模块是否可以引入- app下面是否有models模块
     except (ImportError, AttributeError):
         # When module_name is an invalid dotted path, Python raises ImportError
         # (or ModuleNotFoundError in Python 3.6+). AttributeError may be raised

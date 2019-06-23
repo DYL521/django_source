@@ -18,7 +18,7 @@ MIGRATIONS_MODULE_NAME = 'migrations'
 class MigrationLoader:
     """
     Load migration files from disk and their status from the database.
-
+    从磁盘上加载migration 文件和他们的状态
     Migration files are expected to live in the "migrations" directory of
     an app. Their names are entirely unimportant from a code perspective,
     but will probably follow the 1234_name.py convention.
@@ -66,7 +66,7 @@ class MigrationLoader:
         self.disk_migrations = {}
         self.unmigrated_apps = set()
         self.migrated_apps = set()
-        for app_config in apps.get_app_configs():
+        for app_config in apps.get_app_configs(): #从遍历app
             # Get the migrations module directory
             module_name, explicit = self.migrations_module(app_config.label)
             if module_name is None:
@@ -84,7 +84,7 @@ class MigrationLoader:
                     continue
                 raise
             else:
-                # Empty directories are namespaces.
+                # Empty directories are namespaces. 空间
                 # getattr() needed on PY36 and older (replace w/attribute access).
                 if getattr(module, '__file__', None) is None:
                     self.unmigrated_apps.add(app_config.label)
@@ -116,6 +116,7 @@ class MigrationLoader:
                     migration_name,
                     app_config.label,
                 )
+                # disk_migrations => 最终得到的结果就是: （"myapp","0001_initial"):<MigrTION MYAPP.0001_initial>
 
     def get_migration(self, app_label, name_prefix):
         """Return the named migration or raise NodeNotFoundError."""
@@ -198,12 +199,16 @@ class MigrationLoader:
         usually a problem as generally migration stuff runs in a one-shot process.
         """
         # Load disk data
+        # 1、从磁盘加载*.migrations文件
         self.load_disk()
+
         # Load database data
+        # 2、加载数据库
         if self.connection is None:
             self.applied_migrations = set()
         else:
             recorder = MigrationRecorder(self.connection)
+            # 3、从数据库获取已经加载过的内容
             self.applied_migrations = recorder.applied_migrations()
         # To start, populate the migration graph with nodes for ALL migrations
         # and their dependencies. Also make note of replacing migrations at this step.

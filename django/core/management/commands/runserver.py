@@ -28,10 +28,10 @@ class Command(BaseCommand):
     leave_locale_alone = True
     stealth_options = ('shutdown_message',)
 
-    default_addr = '127.0.0.1'
+    default_addr = '127.0.0.1' # 默认ip地址
     default_addr_ipv6 = '::1'
-    default_port = '8000'
-    protocol = 'http'
+    default_port = '8000'    # 默认端口
+    protocol = 'http' # 默认协议
     server_cls = WSGIServer
 
     def add_arguments(self, parser):
@@ -43,10 +43,12 @@ class Command(BaseCommand):
             '--ipv6', '-6', action='store_true', dest='use_ipv6',
             help='Tells Django to use an IPv6 address.',
         )
+        # 调试时，去掉多线程运行
         parser.add_argument(
             '--nothreading', action='store_false', dest='use_threading',
             help='Tells Django to NOT use threading.',
         )
+        # 代码修改的时候不会自动重载
         parser.add_argument(
             '--noreload', action='store_false', dest='use_reloader',
             help='Tells Django to NOT use the auto-reloader.',
@@ -67,7 +69,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         from django.conf import settings
 
-        if not settings.DEBUG and not settings.ALLOWED_HOSTS:
+        if not settings.DEBUG and not settings.ALLOWED_HOSTS: # 如果DEBUG is False，必须设置ALLOWED_HOSTS
             raise CommandError('You must set settings.ALLOWED_HOSTS if DEBUG is False.')
 
         self.use_ipv6 = options['use_ipv6']
@@ -101,7 +103,7 @@ class Command(BaseCommand):
         """Run the server, using the autoreloader if needed."""
         use_reloader = options['use_reloader']
 
-        if use_reloader:
+        if use_reloader: # 如果要使用自动重载
             autoreload.main(self.inner_run, None, options)
         else:
             self.inner_run(None, **options)
@@ -117,10 +119,11 @@ class Command(BaseCommand):
         quit_command = 'CTRL-BREAK' if sys.platform == 'win32' else 'CONTROL-C'
 
         self.stdout.write("Performing system checks...\n\n")
-        self.check(display_num_errors=True)
+        import pdb;pdb.set_trace()
+        self.check(display_num_errors=True) # 静态检查工具，解释行语言的毛病
         # Need to check migrations here, so can't use the
         # requires_migrations_check attribute.
-        self.check_migrations()
+        self.check_migrations() # 检查migrations文件。。。输出一些提示
         now = datetime.now().strftime('%B %d, %Y - %X')
         self.stdout.write(now)
         self.stdout.write((
