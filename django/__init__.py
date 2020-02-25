@@ -5,7 +5,7 @@ VERSION = (2, 0, 14, 'alpha', 0)
 __version__ = get_version(VERSION)
 
 
-def  setup(set_prefix=True):
+def setup(set_prefix=True):
     """
     Configure the settings (this happens as a side effect of accessing the
     first setting), configure logging and populate the app registry.
@@ -19,10 +19,13 @@ def  setup(set_prefix=True):
     from django.urls import set_script_prefix
     from django.utils.log import configure_logging
 
-    import pdb;pdb.set_trace()
+    import pdb;
+    pdb.set_trace()
+    # 配置日志
     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
     # settings.LOGGING_CONFIG = 'logging.config.dictConfig' settings.LOGGING ={} 但是这个是在那个位置设置的呢？
     if set_prefix:
         set_script_prefix('/' if settings.FORCE_SCRIPT_NAME is None else settings.FORCE_SCRIPT_NAME
-        ) # FORCE_SCRIPT_NAME = None ,直接为/
-    apps.populate(settings.INSTALLED_APPS) # 加载app、model等等。。。。
+                          )  # FORCE_SCRIPT_NAME = None ,直接为/
+    # 配置app
+    apps.populate(settings.INSTALLED_APPS)  # 加载app、model等等。。。。

@@ -372,7 +372,7 @@ class ManagementUtility:
 
             if subcommand == 'runserver' and '--noreload' not in self.argv:
                 try:
-                    autoreload.check_errors(django.setup)()
+                    autoreload.check_errors(django.setup)() # 这里执行来什么？
                 except Exception:
                     # The exception will be raised later in the child process
                     # started by the autoreloader. Pretend it didn't happen by

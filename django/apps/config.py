@@ -7,15 +7,17 @@ from django.utils.module_loading import module_has_submodule
 MODELS_MODULE_NAME = 'models'
 
 
-class AppConfig: ##123123
+class AppConfig:  ##123123
     """Class representing a Django application and its configuration."""
 
     def __init__(self, app_name, app_module):
         # Full Python path to the application e.g. 'django.contrib.admin'.
+        # name 表示app的全路径
         self.name = app_name
 
         # Root module for the application e.g. <module 'django.contrib.admin'
         # from 'django/contrib/admin/__init__.py'>.
+        # 应用的__init__
         self.module = app_module
 
         # Reference to the Apps registry that holds this AppConfig. Set by the
@@ -27,11 +29,12 @@ class AppConfig: ##123123
 
         # Last component of the Python path to the application e.g. 'admin'.
         # This value must be unique across a Django project.
+        # 应用程序的Python路径的最后一个组件，例如“admin”。他的值在Django项目中必须是唯一的。
         if not hasattr(self, 'label'):
             self.label = app_name.rpartition(".")[2]
 
         # Human-readable name for the application e.g. "Admin". admin展示的名字
-        if not hasattr(self, 'verbose_name'): 
+        if not hasattr(self, 'verbose_name'):
             self.verbose_name = self.label.title()
 
         # Filesystem path to the application directory e.g.
@@ -87,14 +90,14 @@ class AppConfig: ##123123
             # If import_module succeeds, entry is a path to an app module,
             # which may specify an app config class with default_app_config.
             # Otherwise, entry is a path to an app config class or an error.
-            module = import_module(entry) # 加载
+            module = import_module(entry)  # 加载
 
         except ImportError:
             # Track that importing as an app module failed. If importing as an
             # app config class fails too, we'll trigger the ImportError again.
             module = None
 
-            mod_path, _, cls_name = entry.rpartition('.') # 分割字符串 apps.app.app .APPconfig
+            mod_path, _, cls_name = entry.rpartition('.')  # 分割字符串 apps.app.app .APPconfig
 
             # Raise the original exception when entry cannot be a path to an
             # app config class.
@@ -113,9 +116,9 @@ class AppConfig: ##123123
 
         # If we're reaching this point, we must attempt to load the app config
         # class located at <mod_path>.<cls_name>
-        mod = import_module(mod_path) # 引入模块！
+        mod = import_module(mod_path)  # 引入模块！
         try:
-            cls = getattr(mod, cls_name) #  加载类
+            cls = getattr(mod, cls_name)  # 加载类
         except AttributeError:
             if module is None:
                 # If importing as an app module failed, that error probably
@@ -126,7 +129,7 @@ class AppConfig: ##123123
 
         # Check for obvious errors. (This check prevents duck typing, but
         # it could be removed if it became a problem in practice.)
-        if not issubclass(cls, AppConfig): # 检查是否是AppConfig的实例
+        if not issubclass(cls, AppConfig):  # 检查是否是AppConfig的实例
             raise ImproperlyConfigured(
                 "'%s' isn't a subclass of AppConfig." % entry)
 
@@ -193,11 +196,13 @@ class AppConfig: ##123123
         # 'all_models' attribute of the Apps this AppConfig is attached to.
         self.models = self.apps.all_models[self.label]
 
-        if module_has_submodule(self.module, MODELS_MODULE_NAME): # 
+        if module_has_submodule(self.module, MODELS_MODULE_NAME):  #
             models_module_name = '%s.%s' % (self.name, MODELS_MODULE_NAME)
             self.models_module = import_module(models_module_name)
 
     def ready(self):
         """
         Override this method in subclasses to run code when Django starts.
+        是为了给开发者在需要在启动项目时候做一些一次性的事情留了一个接口，
+        只需要在apps.py中重写ready函数就可以了，而且确实会在启动过程中执行
         """

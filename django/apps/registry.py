@@ -83,7 +83,7 @@ class Apps:
         2 - 导入每个应用程序模块，然后导入每个模型模块。
         3 - 它是线程安全和等幂的，但不可重入。 调用加载完成的ready事件！（check检查）
         """
-        if self.ready: # Flase
+        if self.ready:  # Flase
             return
 
         # populate() might be called by two threads in parallel on servers
@@ -93,7 +93,7 @@ class Apps:
         with self._lock:
             if self.ready:
                 return
-
+            # 这里因为self._lock用的是可重入锁，所以同一个线程是可以在配置过程中多次进入
             # An RLock prevents other threads from entering this section. The
             # compare and set operation below is atomic.
             if self.loading:
@@ -103,21 +103,21 @@ class Apps:
             self.loading = True
 
             # Phase 1: initialize app configs and import app modules.
-            # 阶段1：初始化应用程序配置并导入应用程序模块
+            # 阶段1：初始化应用程序配置并导入应用程序模块 - installed_apps是设置文件的installed_app列表
             # import pdb; pdb.set_trace()
             for entry in installed_apps:
-                if isinstance(entry, AppConfig): # 如果配置apps配置文件写的AppConfig的实例
+                if isinstance(entry, AppConfig):  # 如果配置apps配置文件写的AppConfig的实例
                     app_config = entry
-                else: # 否则应该是字符串！！
-                    app_config = AppConfig.create(entry)# 创建配置
+                else:  # 否则应该是字符串！！
+                    app_config = AppConfig.create(entry)  # 创建配置
+                # 配置完成之后，检查是否有重复的app配置实例lable
                 if app_config.label in self.app_configs:
                     raise ImproperlyConfigured(
                         "Application labels aren't unique, "
                         "duplicates: %s" % app_config.label)
-
+                # 把每一个app的配置实例都添加到self.app_configs中
                 self.app_configs[app_config.label] = app_config
                 app_config.apps = self  # self 就是下面全局的模块级变量 - 当前对象赋值到各个app的实例中
-
 
             """
             面试题：
@@ -125,11 +125,11 @@ class Apps:
             """
 
             # Check for duplicate app names.
-            # 检查重复的app名称
+            # 检查重复的app名称，确保对象的名字不会重复
             counts = Counter(
-                app_config.name for app_config in self.app_configs.values()) # odict_values([])
+                app_config.name for app_config in self.app_configs.values())  # odict_values([])
             duplicates = [
-                name for name, count in counts.most_common() if count > 1] # []
+                name for name, count in counts.most_common() if count > 1]  # []
             if duplicates:
                 raise ImproperlyConfigured(
                     "Application names aren't unique, "
@@ -139,10 +139,11 @@ class Apps:
 
             # Phase 2: import models modules.
             # 阶段2：导入模型模块
-            import pdb;pdb.set_trace() # 加载model
+            import pdb;
+            pdb.set_trace()  # 加载model
             for app_config in self.app_configs.values():
                 app_config.import_models()
-                
+
                 # 执行完，app_config就有model这个模块了
             self.clear_cache()
 
@@ -150,8 +151,10 @@ class Apps:
 
             # Phase 3: run ready() methods of app configs.
             # 阶段3：运行app配置的ready（）方法
-            import pdb;pdb.set_trace() # ready
-            for app_config in self.get_app_configs():# odict_values([])
+            import pdb;
+            pdb.set_trace()  # ready
+            for app_config in self.get_app_configs():  # odict_values([])
+                # AppConfig.ready() 这例可以做一些我们想要的事情，在项目启动的时候!!
                 app_config.ready()  # contrib/admin/apps.py
 
             self.ready = True
@@ -170,7 +173,7 @@ class Apps:
     def get_app_configs(self):
         """Import applications and return an iterable of app configs."""
         """ 导入应用程序并且返回可迭代 的app配置"""
-        self.check_apps_ready() # 检查app
+        self.check_apps_ready()  # 检查app
         return self.app_configs.values()
 
     def get_app_config(self, app_label):
@@ -246,7 +249,7 @@ class Apps:
         app_models = self.all_models[app_label]
         if model_name in app_models:
             if (model.__name__ == app_models[model_name].__name__ and
-                    model.__module__ == app_models[model_name].__module__):
+                model.__module__ == app_models[model_name].__module__):
                 warnings.warn(
                     "Model '%s.%s' was already registered. "
                     "Reloading models is not advised as it can lead to inconsistencies, "
@@ -429,6 +432,7 @@ class Apps:
             def apply_next_model(model):
                 next_function = partial(apply_next_model.func, model)
                 self.lazy_model_operation(next_function, *more_models)
+
             apply_next_model.func = function
 
             # If the model has already been imported and registered, partially
