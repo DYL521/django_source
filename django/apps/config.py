@@ -85,6 +85,7 @@ class AppConfig:  ##123123
     def create(cls, entry):
         """
         Factory that creates an app config from an entry in INSTALLED_APPS.
+        从已安装的应用程序中的条目创建应用程序配置的工厂。
         """
         try:
             # If import_module succeeds, entry is a path to an app module,
@@ -106,6 +107,7 @@ class AppConfig:  ##123123
 
         else:
             try:
+                # 这里的entry是每个django app中对应配置类，对应于apps.py
                 # If this works, the app module specifies an app config class.
                 entry = module.default_app_config
             except AttributeError:
@@ -118,6 +120,7 @@ class AppConfig:  ##123123
         # class located at <mod_path>.<cls_name>
         mod = import_module(mod_path)  # 引入模块！
         try:
+            # 这里我们拿到了项目中某个app下面的apps.py中的XXConfig类，继承自AppConfig
             cls = getattr(mod, cls_name)  # 加载类
         except AttributeError:
             if module is None:
@@ -136,6 +139,7 @@ class AppConfig:  ##123123
         # Obtain app name here rather than in AppClass.__init__ to keep
         # all error checking for entries in INSTALLED_APPS in one place.
         try:
+            # 这个是我们生成app指定的那个名字，会自动填充到xxConfig的name属性中去
             app_name = cls.name
         except AttributeError:
             raise ImproperlyConfigured(
@@ -191,9 +195,16 @@ class AppConfig:  ##123123
                 continue
             yield model
 
+    #这里可以看到，import_models其实是从总的apps管理器对象那里去取自己对应的models存起来。
+    # 这是因为如Apps类中所注释的：
+    # Every time a model is imported, ModelBase.__new__ calls apps.register_model which creates an entry in all_models.
+    # 总的apps管理器会在import的时候注册所有的model，
+    # 所以在注册某一个app配置实例的时候，反而是app配置实例去apps管理器那里拿属于自己的models进行属性赋值。
     def import_models(self):
         # Dictionary of models for this app, primarily maintained in the
         # 'all_models' attribute of the Apps this AppConfig is attached to.
+        # 此应用程序的模型字典，主要维护在
+        # 此AppConfig附加到的应用程序的“所有模型”属性。
         self.models = self.apps.all_models[self.label]
 
         if module_has_submodule(self.module, MODELS_MODULE_NAME):  #
@@ -206,3 +217,14 @@ class AppConfig:  ##123123
         是为了给开发者在需要在启动项目时候做一些一次性的事情留了一个接口，
         只需要在apps.py中重写ready函数就可以了，而且确实会在启动过程中执行
         """
+
+"""
+到这里，django项目启动部分配置相关的源码就算是分析完了，感觉还是很有收获的。
+
+首先，我们了解了django项目的入口程序其实就是manage.py通过对命令行参数进行解析，然后对不同的命令进行不同的处理。
+针对runserver（django项目启动），其实最最关键的地方就在于django/__init__.py中的setup函数，在这里先设置了url解析的前缀，让开发者既可以自定义，也可以在开发过程中的urls.py中不用添加前置'/'，接下来就是对于所有app的相关配置。
+app的相关配置有两个关键部分，一个是对单个app的配置类AppConfig，一个是对所有app的管理类Apps，这两个类紧密相关，是总分关系，同时相互索引。在初始化过程中，Apps在控制流程，主要包括对所有app进行路径解析、名字去重、对每个app配置类进行初始化、赋予每个app配置类它们的相关models、还有就是执行每个app开发者自己定义的ready函数。
+所以，看完源码，结合开发经验，我认为要想成功启动项目，最重要的就是把settings里面的installed_app变量写对，而且添加app之后记得把相对的路径加到配置文件中。同时，apps.py下的ready函数可以给我们一个不错的做启动的初始化的钩子，这个要记住并好好利用。
+
+https://zhuanlan.zhihu.com/p/94679262
+"""
