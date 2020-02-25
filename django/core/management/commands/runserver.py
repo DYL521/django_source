@@ -28,10 +28,10 @@ class Command(BaseCommand):
     leave_locale_alone = True
     stealth_options = ('shutdown_message',)
 
-    default_addr = '127.0.0.1' # 默认ip地址
+    default_addr = '127.0.0.1'  # 默认ip地址
     default_addr_ipv6 = '::1'
-    default_port = '8000'    # 默认端口
-    protocol = 'http' # 默认协议
+    default_port = '8000'  # 默认端口
+    protocol = 'http'  # 默认协议
     server_cls = WSGIServer
 
     def add_arguments(self, parser):
@@ -68,8 +68,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         from django.conf import settings
-
-        if not settings.DEBUG and not settings.ALLOWED_HOSTS: # 如果DEBUG is False，必须设置ALLOWED_HOSTS
+        # 设置一些属性值，如果有在命令行中指定就用命令中的参数，不然就用默认值。
+        if not settings.DEBUG and not settings.ALLOWED_HOSTS:  # 如果DEBUG is False，必须设置ALLOWED_HOSTS
             raise CommandError('You must set settings.ALLOWED_HOSTS if DEBUG is False.')
 
         self.use_ipv6 = options['use_ipv6']
@@ -97,13 +97,14 @@ class Command(BaseCommand):
         if not self.addr:
             self.addr = self.default_addr_ipv6 if self.use_ipv6 else self.default_addr
             self._raw_ipv6 = self.use_ipv6
+        # 设置完属性之后，真正运行服务器
         self.run(**options)
 
     def run(self, **options):
         """Run the server, using the autoreloader if needed."""
         use_reloader = options['use_reloader']
 
-        if use_reloader: # 如果要使用自动重载
+        if use_reloader:  # 如果要使用自动重载
             autoreload.main(self.inner_run, None, options)
         else:
             self.inner_run(None, **options)
@@ -113,34 +114,38 @@ class Command(BaseCommand):
         # to be raised in the child process, raise it now.
         autoreload.raise_last_exception()
 
+        # 根据命令参数，输出对应的内容，进行标准输出
         threading = options['use_threading']
         # 'shutdown_message' is a stealth option.
         shutdown_message = options.get('shutdown_message', '')
         quit_command = 'CTRL-BREAK' if sys.platform == 'win32' else 'CONTROL-C'
 
         self.stdout.write("Performing system checks...\n\n")
-        import pdb;pdb.set_trace()
-        self.check(display_num_errors=True) # 静态检查工具，解释行语言的毛病
+        import pdb;
+        pdb.set_trace()
+        self.check(display_num_errors=True)  # 静态检查工具，解释行语言的毛病
         # Need to check migrations here, so can't use the
         # requires_migrations_check attribute.
-        self.check_migrations() # 检查migrations文件。。。输出一些提示
+        self.check_migrations()  # 检查migrations文件。。。输出一些提示
         now = datetime.now().strftime('%B %d, %Y - %X')
         self.stdout.write(now)
         self.stdout.write((
-            "Django version %(version)s, using settings %(settings)r\n"
-            "Starting development server at %(protocol)s://%(addr)s:%(port)s/\n"
-            "Quit the server with %(quit_command)s.\n"
-        ) % {
-            "version": self.get_version(),
-            "settings": settings.SETTINGS_MODULE,
-            "protocol": self.protocol,
-            "addr": '[%s]' % self.addr if self._raw_ipv6 else self.addr,
-            "port": self.port,
-            "quit_command": quit_command,
-        })
-
+                              "Django version %(version)s, using settings %(settings)r\n"
+                              "Starting development server at %(protocol)s://%(addr)s:%(port)s/\n"
+                              "Quit the server with %(quit_command)s.\n"
+                          ) % {
+                              "version": self.get_version(),
+                              "settings": settings.SETTINGS_MODULE,
+                              "protocol": self.protocol,
+                              "addr": '[%s]' % self.addr if self._raw_ipv6 else self.addr,
+                              "port": self.port,
+                              "quit_command": quit_command,
+                          })
+        # try里面才是真正跑项目服务的，跑起来之后才能接收请求。
         try:
+            # handler是默认的WSGI协议的处理器，其实就是django里面封装好的处理器
             handler = self.get_handler(*args, **options)
+            # 可以看出这个已经是服务器内部实现的函数的，所以直到这一步，runsever命令的服务才真正被启动并等待接收请求。
             run(self.addr, int(self.port), handler,
                 ipv6=self.use_ipv6, threading=threading, server_cls=self.server_cls)
         except socket.error as e:

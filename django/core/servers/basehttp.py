@@ -150,7 +150,7 @@ class WSGIRequestHandler(simple_server.WSGIRequestHandler):
         handler = ServerHandler(
             self.rfile, self.wfile, self.get_stderr(), self.get_environ()
         )
-        handler.request_handler = self      # backpointer for logging
+        handler.request_handler = self  # backpointer for logging
         handler.run(self.server.get_app())
 
 
@@ -170,4 +170,18 @@ def run(addr, port, wsgi_handler, ipv6=False, threading=False, server_cls=WSGISe
         # isn't terminating correctly.
         httpd.daemon_threads = True
     httpd.set_app(wsgi_handler)
+    # ## 真正启动服务器，然后等待请求并处理
     httpd.serve_forever()
+
+    """
+    首先，我们了解了django项目的入口程序其实就是manage.py通过对命令行参数进行解析，然后对不同的命令进行不同的处理。
+针对runserver（django项目启动），其实最最关键的地方就在于django/__init__.py中的setup函数，
+在这里先设置了url解析的前缀，让开发者既可以自定义，也可以在开发过程中的urls.py中不用添加前置'/'，
+接下来就是对于所有app的相关配置。
+app的相关配置有两个关键部分，一个是对单个app的配置类AppConfig，一个是对所有app的管理类Apps，这两个类紧密相关，是总分关系，同时相互索引。在初始化过程中，Apps在控制流程，主要包括对所有app进行路径解析、名字去重、对每个app配置类进行初始化、赋予每个app配置类它们的相关models、还有就是执行每个app开发者自己定义的ready函数。
+在真正执行runserver命令的部分，我们可以看到是用了fetch_command函数拿到对应命令的Command类，然后再调用BaseCommand类中的run_from_argv函数。通过这一部分，我们可以更好地了解到为什么自定义命令的时候需要在app中创建management目录和commands目录，为什么Command类需要继承BaseCommand类，为什么Command类中需要实现一个handle函数，这些都是从源码到用法的验证。
+从整个runserver命令的流程上看，最主要的就是两个部分，一个是setup去做app相关的配置和检查，搞定之后，就找到真正的handle函数去做服务的拉起和接收请求，这样runserver的使命就算是完成了。
+
+https://zhuanlan.zhihu.com/p/97316210
+
+    """

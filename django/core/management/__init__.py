@@ -67,6 +67,7 @@ def get_commands():
     # import pdb
     # pdb.set_trace()
 
+    # 导入内置命令
     commands = {name: 'django.core' for name in find_commands(__path__[0])}
     print("commands: " + str(commands))
     """
@@ -82,7 +83,8 @@ def get_commands():
     """
     if not settings.configured:
         return commands
-
+    # 2、导入用户自定义命令
+    # 官方： https://docs.djangoproject.com/en/2.2/howto/custom-management-commands/
     for app_config in reversed(list(apps.get_app_configs())):
         path = os.path.join(app_config.path, 'management')
         commands.update({name: app_config.name for name in find_commands(path)})
@@ -213,8 +215,10 @@ class ManagementUtility:
         "django-admin" or "manage.py") if it can't be found.
         """
         # Get commands outside of try block to prevent swallowing exceptions
+        # get_commands()是获取整个项目所有命令(包括内置和用户自定义命令)的dict: {命令:包名}
         commands = get_commands()  # 具体干了啥
         try:
+            ## app_name为定义了该命令的对应的app的名称
             app_name = commands[subcommand]  # app_name = 'django.core'
         except KeyError:
             if os.environ.get('DJANGO_SETTINGS_MODULE'):
@@ -230,6 +234,7 @@ class ManagementUtility:
                 % (subcommand, self.prog_name)
             )
             sys.exit(1)
+        # 下面的部分是从app_name这个包中拿到对应的Command类，不管是内置还是自定义命令的类都需要继承自BaseCommand
         if isinstance(app_name, BaseCommand):
             # If the command is already loaded, use it directly.
             # 如果命令已经加载，则直接使用它。
@@ -261,7 +266,7 @@ class ManagementUtility:
         and formatted as potential completion suggestions.
         """
         # Don't complete if user hasn't sourced bash_completion file.
-        if 'DJANGO_AUTO_COMPLETE' not in os.environ: # 环境变量
+        if 'DJANGO_AUTO_COMPLETE' not in os.environ:  # 环境变量
             return
 
         cwords = os.environ['COMP_WORDS'].split()[1:]
@@ -360,7 +365,7 @@ class ManagementUtility:
         try:
             settings.INSTALLED_APPS  # ?? 难懂
         except ImproperlyConfigured as exc:
-            self.settings_exception = exc #
+            self.settings_exception = exc  #
 
         if settings.configured:  # settings.configured = Flase
             # Start the auto-reloading dev server even if the code is broken.
@@ -372,7 +377,7 @@ class ManagementUtility:
 
             if subcommand == 'runserver' and '--noreload' not in self.argv:
                 try:
-                    autoreload.check_errors(django.setup)() # 这里执行来什么？
+                    autoreload.check_errors(django.setup)()  # 这里执行来什么？
                 except Exception:
                     # The exception will be raised later in the child process
                     # started by the autoreloader. Pretend it didn't happen by
@@ -392,7 +397,7 @@ class ManagementUtility:
 
             # In all other cases, django.setup() is required to succeed.
             else:
-                django.setup() # 安装django
+                django.setup()  # 安装django
 
         self.autocomplete()  # 命令补全！！
 
@@ -411,13 +416,16 @@ class ManagementUtility:
             sys.stdout.write(self.main_help_text() + '\n')
         else:
             # subcommand = startproject
-            # 加载startproject_module.Command()  # 找到对应的命令调用！
+            ##  加载startproject_module.Command()  # runserver 准本完成之后， 找到对应的命令调用！
+            #拿到了对应命令文件中的Command类对象之后，就调用这个函数。其实这个函数是写在BaseCommand类中的，
+            # 所有的内置或用户自定义命令类都需要继承这个基类，所以可以统一调用。这个函数主要是将用户输入的命令和参数做好一个划分，然后传到self.execute函数中做进一步处理，其他的不是重点。
             self.fetch_command(subcommand).run_from_argv(self.argv)  # 真正执行startproject位置
 
 
 """
 django-admin startproject my_project
 """
+
 
 # 过程是：实例话一个ManagementUtility类，调用execute，
 #       在执行函数中，接受来自命令行的命令，然后进行判断；
@@ -433,6 +441,3 @@ def execute_from_command_line(argv=None):
     """
     utility.execute()
     print("开始执行。。。。。。")
-
-
-

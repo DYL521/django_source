@@ -42,6 +42,7 @@ class CommandParser(ArgumentParser):
     SystemExit in several occasions, as SystemExit is unacceptable when a
     command is called programmatically.
     """
+
     def __init__(self, cmd, **kwargs):
         self.cmd = cmd
         super().__init__(**kwargs)
@@ -49,7 +50,7 @@ class CommandParser(ArgumentParser):
     def parse_args(self, args=None, namespace=None):
         # Catch missing argument for a better error message
         if (hasattr(self.cmd, 'missing_args_message') and
-                not (args or any(not arg.startswith('-') for arg in args))):
+            not (args or any(not arg.startswith('-') for arg in args))):
             self.error(self.cmd.missing_args_message)
         return super().parse_args(args, namespace)
 
@@ -66,7 +67,7 @@ def handle_default_options(options):
     so that ManagementUtility can handle them before searching for
     user commands.
     """
-    if options.settings: # Namespace(args=['my_project'], pythonpath=None, settings=None)
+    if options.settings:  # Namespace(args=['my_project'], pythonpath=None, settings=None)
         os.environ['DJANGO_SETTINGS_MODULE'] = options.settings
         print("settings 设置 ....")
     if options.pythonpath:
@@ -81,6 +82,7 @@ class OutputWrapper(TextIOBase):
     """
     Wrapper around stdout/stderr
     """
+
     @property
     def style_func(self):
         return self._style_func
@@ -290,8 +292,10 @@ class BaseCommand:
         args = cmd_options.pop('args', ())
         handle_default_options(options)
         try:
-            import pdb;pdb.set_trace()
-            self.execute(*args, **cmd_options) # 开始执行命令 -> templates.py : handle
+            import pdb;
+            pdb.set_trace()
+            print("执行命令")
+            self.execute(*args, **cmd_options)  # 开始执行命令 -> templates.py : handle
         except Exception as e:
             if options.traceback or not isinstance(e, CommandError):
                 raise
@@ -343,9 +347,9 @@ class BaseCommand:
             # django静态检查系统 1.7
             if self.requires_system_checks and not options.get('skip_checks'):
                 self.check()
-            if self.requires_migrations_checks: # 是否需要migrate检查
-                self.check_migrations() # 检查migrate
-            output = self.handle(*args, **options) # 关键 --->startproject.py=>handle
+            if self.requires_migrations_checks:  # 是否需要migrate检查
+                self.check_migrations()  # 检查migrate
+            output = self.handle(*args, **options)  # 关键 --->startproject.py=>handle
             if output:
                 if self.output_transaction:
                     connection = connections[options.get('database', DEFAULT_DB_ALIAS)]
@@ -438,7 +442,7 @@ class BaseCommand:
         """
         from django.db.migrations.executor import MigrationExecutor
         try:
-            executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])# MigrationExecutor 简单的说就是数据库连接
+            executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])  # MigrationExecutor 简单的说就是数据库连接
         except ImproperlyConfigured:
             # No databases are configured (or the dummy one)
             return
@@ -462,6 +466,7 @@ class BaseCommand:
         """
         The actual logic of the command. Subclasses must implement
         this method.
+        这个就类癌一个接口，留着给子类来实现，不实现会抛出异常
         """
         raise NotImplementedError('subclasses of BaseCommand must provide a handle() method')
 
