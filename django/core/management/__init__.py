@@ -165,6 +165,7 @@ class ManagementUtility:
     封装django admin和manage.py实用程序的逻辑。
     """
 
+    # 把命令航的参数记录下来，同时用项目文件夹作为项目名记录下来
     def __init__(self, argv=None):
         self.argv = argv or sys.argv[:]  # argv==None时，sys.argv[:]的值赋值（遍历）
         self.prog_name = os.path.basename(self.argv[0])
@@ -418,7 +419,9 @@ class ManagementUtility:
 django-admin startproject my_project
 """
 
-
+# 过程是：实例话一个ManagementUtility类，调用execute，
+#       在执行函数中，接受来自命令行的命令，然后进行判断；
+#       如果是runserver(),调用django.setup()方法，其他是意外处理
 def execute_from_command_line(argv=None):
     """Run a ManagementUtility."""
     # import pdb;
