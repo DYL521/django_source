@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="964e2b30-7512-4aa3-bfb8-c755dd01aeb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/django/core/management/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/management/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/management/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/management/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/management/commands/runserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/management/commands/runserver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/core/servers/basehttp.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/servers/basehttp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/django/core/servers/basehttp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="184" column="37" lean-forward="true" selection-start-line="184" selection-start-column="37" selection-end-line="184" selection-end-column="37" />
+            <state relative-caret-position="456">
+              <caret line="199" lean-forward="true" selection-start-line="199" selection-end-line="200" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -388,18 +385,18 @@
       <workItem from="1556671632160" duration="18951000" />
       <workItem from="1557542386915" duration="7450000" />
       <workItem from="1561168385240" duration="9618000" />
-      <workItem from="1582588459848" duration="5215000" />
+      <workItem from="1582588459848" duration="5350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49959000" />
+    <option name="totallyTimeSpent" value="50094000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="793" y="110" width="1611" height="1083" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1822817" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1822817" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -413,7 +410,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49904397" weight="0.50206614" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50159335" side_tool="true" weight="0.17975207" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49840662" visible="true" weight="0.15805785" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49840662" visible="true" weight="0.40289256" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32954547" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32954547" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -856,8 +853,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/django/core/servers/basehttp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="184" column="37" lean-forward="true" selection-start-line="184" selection-start-column="37" selection-end-line="184" selection-end-column="37" />
+        <state relative-caret-position="456">
+          <caret line="199" lean-forward="true" selection-start-line="199" selection-end-line="200" selection-end-column="3" />
         </state>
       </provider>
     </entry>

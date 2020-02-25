@@ -184,4 +184,18 @@ app的相关配置有两个关键部分，一个是对单个app的配置类AppCo
 
 https://zhuanlan.zhihu.com/p/97316210
 
-    """
+
+execute_from_command_line()
+    utility.execute()
+		--->django.setup()
+	self.fetch_command('runserver').run_from_argv(self.argv)
+		--->fetch_command('runserver') 返回对应命令模块的类的实例，这里是'runserver'命令的类
+		--->run_from_argv(self.argv)
+			--->execute()做一些设置参数的错误检查，然后设置句柄
+				--->handle()做些设置
+					--->run() 主要调用inner_run，区分是否是use_reloader
+						--->inner_run()
+								--->inner_run() 设置句柄handler,WSGIHandler 的实例
+									---run(handler...)一个标准的 wsgi 实现
+
+"""
