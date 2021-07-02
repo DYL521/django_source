@@ -137,6 +137,7 @@ class WSGIHandler(base.BaseHandler):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # 加载配置的中间件
         self.load_middleware()
 
     def __call__(self, environ, start_response):

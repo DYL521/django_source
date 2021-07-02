@@ -98,7 +98,9 @@ class Command(BaseCommand):
         self.run(**options)
 
     def run(self, **options):
-        """Run the server, using the autoreloader if needed."""
+        """
+        运行服务，有必要使用自动加载
+        Run the server, using the autoreloader if needed."""
         use_reloader = options['use_reloader']
         # 自动加载 : 2021年5月11日15:32:55
         if use_reloader:
@@ -124,20 +126,22 @@ class Command(BaseCommand):
         now = datetime.now().strftime('%B %d, %Y - %X')
         self.stdout.write(now)
         self.stdout.write((
-            "Django version %(version)s, using settings %(settings)r\n"
-            "Starting development server at %(protocol)s://%(addr)s:%(port)s/\n"
-            "Quit the server with %(quit_command)s.\n"
-        ) % {
-            "version": self.get_version(),
-            "settings": settings.SETTINGS_MODULE,
-            "protocol": self.protocol,
-            "addr": '[%s]' % self.addr if self._raw_ipv6 else self.addr,
-            "port": self.port,
-            "quit_command": quit_command,
-        })
+                              "Django version %(version)s, using settings %(settings)r\n"
+                              "Starting development server at %(protocol)s://%(addr)s:%(port)s/\n"
+                              "Quit the server with %(quit_command)s.\n"
+                          ) % {
+                              "version": self.get_version(),
+                              "settings": settings.SETTINGS_MODULE,
+                              "protocol": self.protocol,
+                              "addr": '[%s]' % self.addr if self._raw_ipv6 else self.addr,
+                              "port": self.port,
+                              "quit_command": quit_command,
+                          })
 
         try:
+            # 核心处理：WSGI
             handler = self.get_handler(*args, **options)
+            # 运行
             run(self.addr, int(self.port), handler,
                 ipv6=self.use_ipv6, threading=threading, server_cls=self.server_cls)
         except socket.error as e:

@@ -361,11 +361,15 @@ class BaseCommand:
     def check(self, app_configs=None, tags=None, display_num_errors=False,
               include_deployment_checks=False, fail_level=checks.ERROR):
         """
+         使用系统检查框架，验证整个django项目
         Use the system check framework to validate entire Django project.
+        任何严重消息（错误或者关键错误）直接抛出命令错误
         Raise CommandError for any serious message (error or critical errors).
+        如果只是轻量级的消息或者警告， 直接输出到终端或者不抛出异常
         If there are only light messages (like warnings), print them to stderr
         and don't raise an exception.
         """
+        # 1、
         all_issues = self._run_checks(
             app_configs=app_configs,
             tags=tags,

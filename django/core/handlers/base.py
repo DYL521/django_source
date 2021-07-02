@@ -32,10 +32,15 @@ class BaseHandler:
         self._response_middleware = []
         self._exception_middleware = []
 
+        # 1、
         handler = convert_exception_to_response(self._get_response)
+
+        #2、逆序遍历配置的中间件
         for middleware_path in reversed(settings.MIDDLEWARE):
+            # 2.1
             middleware = import_string(middleware_path)
             try:
+                # 2.2
                 mw_instance = middleware(handler)
             except MiddlewareNotUsed as exc:
                 if settings.DEBUG:
@@ -51,6 +56,7 @@ class BaseHandler:
                 )
 
             if hasattr(mw_instance, 'process_view'):
+                #
                 self._view_middleware.insert(0, mw_instance.process_view)
             if hasattr(mw_instance, 'process_template_response'):
                 self._template_response_middleware.append(mw_instance.process_template_response)
@@ -97,29 +103,32 @@ class BaseHandler:
 
     def _get_response(self, request):
         """
+        实际调用view的地方
         Resolve and call the view, then apply view, exception, and
         template_response middleware. This method is everything that happens
         inside the request/response middleware.
+        _get_response 是被respoonse/request中间件包装在最里面的
         """
         response = None
-
+        # 1、
         if hasattr(request, 'urlconf'):
             urlconf = request.urlconf
             set_urlconf(urlconf)
             resolver = get_resolver(urlconf)
         else:
             resolver = get_resolver()
-
+        # 2、 匹配view
         resolver_match = resolver.resolve(request.path_info)
         callback, callback_args, callback_kwargs = resolver_match
         request.resolver_match = resolver_match
 
         # Apply view middleware
+        # 3、调用view的中间件
         for middleware_method in self._view_middleware:
             response = middleware_method(request, callback, callback_args, callback_kwargs)
             if response:
                 break
-
+        # 4、
         if response is None:
             wrapped_callback = self.make_view_atomic(callback)
             try:
@@ -128,6 +137,7 @@ class BaseHandler:
                 response = self.process_exception_by_middleware(e, request)
 
         # Complain if the view returned None (a common error).
+        # 5、 判断是FBV 还是CBV
         if response is None:
             if isinstance(callback, types.FunctionType):    # FBV
                 view_name = callback.__name__
@@ -141,6 +151,7 @@ class BaseHandler:
 
         # If the response supports deferred rendering, apply template
         # response middleware and then render the response
+        # 6、
         elif hasattr(response, 'render') and callable(response.render):
             for middleware_method in self._template_response_middleware:
                 response = middleware_method(request, response)

@@ -58,6 +58,7 @@ class CheckRegistry:
     def run_checks(self, app_configs=None, tags=None, include_deployment_checks=False):
         """
         Run all registered checks and return list of Errors and Warnings.
+        运行所有已注册的检查，并且返回错误和告警列表
         """
         errors = []
         checks = self.get_checks(include_deployment_checks)
