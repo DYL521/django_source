@@ -144,8 +144,13 @@ def call_command(command_name, *args, **options):
 class ManagementUtility:
     """
     Encapsulate the logic of the django-admin and manage.py utilities.
+    封装django-admin和manage.py 的功能
     """
     def __init__(self, argv=None):
+        """
+        1、初始化函数
+         判断是否是单独的py文件执行django项目
+        """
         self.argv = argv or sys.argv[:]
         self.prog_name = os.path.basename(self.argv[0])
         if self.prog_name == '__main__.py':
@@ -219,6 +224,7 @@ class ManagementUtility:
     def autocomplete(self):
         """
         Output completion suggestions for BASH.
+        在终端上输出完成的一些建议说明
 
         The output of this function is passed to BASH's `COMREPLY` variable and
         treated as completion suggestions. `COMREPLY` expects a space
@@ -237,6 +243,8 @@ class ManagementUtility:
         output in a separate file. Otherwise the debug output will be treated
         and formatted as potential completion suggestions.
         """
+
+        # 1、如果用户未获得bash文件直接返回
         # Don't complete if user hasn't sourced bash_completion file.
         if 'DJANGO_AUTO_COMPLETE' not in os.environ:
             return
@@ -294,36 +302,47 @@ class ManagementUtility:
         """
         Given the command-line arguments, figure out which subcommand is being
         run, create a parser appropriate to that command, and run it.
+        给定命令行参数，找出正在执行的子命令
+        运行，创建一个适合该命令的解析器，然后运行它。
         """
+        # 1、是否取到位置1的参数， 否则显示帮助信息
         try:
             subcommand = self.argv[1]
         except IndexError:
             subcommand = 'help'  # Display help if no arguments were given.
 
-        # Preprocess options to extract --settings and --pythonpath.
+        # 2、参数预处理
+        # Preprocess options to extract --settings and --pythonpath. 提取一些 settings pythonPath的配置
         # These options could affect the commands that are available, so they
-        # must be processed early.
+        # must be processed early. 这些选项可能会影响到可用的命令 必须尽早处理
         parser = CommandParser(None, usage="%(prog)s subcommand [options] [args]", add_help=False)
         parser.add_argument('--settings')
         parser.add_argument('--pythonpath')
         parser.add_argument('args', nargs='*')  # catch-all
+
+        # 3、
         try:
             options, args = parser.parse_known_args(self.argv[2:])
             handle_default_options(options)
         except CommandError:
             pass  # Ignore any option errors at this point.
 
+        # 4、是否配置INSTALLED_APPS
         try:
             settings.INSTALLED_APPS
         except ImproperlyConfigured as exc:
             self.settings_exception = exc
 
+        # 5、判断是否已配置设置
         if settings.configured:
             # Start the auto-reloading dev server even if the code is broken.
             # The hardcoded condition is a code smell but we can't rely on a
             # flag on the command class because we haven't located it yet.
+
+            # 5.1 命令== runserver 并且 noreload 不在传入的参数里面
             if subcommand == 'runserver' and '--noreload' not in self.argv:
                 try:
+                    #5.1.1   检查django 项目的完整性 - 装饰器
                     autoreload.check_errors(django.setup)()
                 except Exception:
                     # The exception will be raised later in the child process
@@ -343,12 +362,17 @@ class ManagementUtility:
                         self.argv.remove(_arg)
 
             # In all other cases, django.setup() is required to succeed.
+            # 5.2  其他的命令说明django 已经被安装成功
             else:
                 django.setup()
 
+        # 6、输出启动完成信息
         self.autocomplete()
 
+
+        # 7 判断命令，最终并执行
         if subcommand == 'help':
+            # 7.1 帮助
             if '--commands' in args:
                 sys.stdout.write(self.main_help_text(commands_only=True) + '\n')
             elif len(options.args) < 1:
@@ -358,14 +382,22 @@ class ManagementUtility:
         # Special-cases: We want 'django-admin --version' and
         # 'django-admin --help' to work, for backwards compatibility.
         elif subcommand == 'version' or self.argv[1:] == ['--version']:
+            # 7.2 django版本获得
             sys.stdout.write(django.get_version() + '\n')
         elif self.argv[1:] in (['--help'], ['-h']):
+            # 7.3 获取帮助主文件
             sys.stdout.write(self.main_help_text() + '\n')
         else:
+            # 7.3 直接执行命令
             self.fetch_command(subcommand).run_from_argv(self.argv)
 
 
 def execute_from_command_line(argv=None):
+    """
+    执行命令
+    """
     """Run a ManagementUtility."""
+    # 实例化对象
     utility = ManagementUtility(argv)
+    # 执行命令
     utility.execute()

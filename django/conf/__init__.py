@@ -89,7 +89,9 @@ class LazySettings(LazyObject):
 
     @property
     def configured(self):
-        """Return True if the settings have already been configured."""
+        """Return True if the settings have already been configured.
+           如果已配置设置，返回True
+        """
         return self._wrapped is not empty
 
 
