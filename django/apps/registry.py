@@ -34,6 +34,7 @@ class Apps:
         self.all_models = defaultdict(OrderedDict)
 
         # Mapping of labels to AppConfig instances for installed apps.
+        # 存放 映射标签到已安装的app上
         self.app_configs = OrderedDict()
 
         # Stack of app_configs. Used to store the current state in
@@ -122,7 +123,9 @@ class Apps:
             self.ready = True
 
     def check_apps_ready(self):
-        """Raise an exception if all apps haven't been imported yet."""
+        """Raise an exception if all apps haven't been imported yet.
+        如果所有应用没有呗导入，抛出异常
+        """
         if not self.apps_ready:
             raise AppRegistryNotReady("Apps aren't loaded yet.")
 
@@ -132,7 +135,9 @@ class Apps:
             raise AppRegistryNotReady("Models aren't loaded yet.")
 
     def get_app_configs(self):
-        """Import applications and return an iterable of app configs."""
+        """Import applications and return an iterable of app configs.
+        导入应用程序并返回应用程序的可迭代配置
+        """
         self.check_apps_ready()
         return self.app_configs.values()
 
@@ -241,8 +246,10 @@ class Apps:
         Return the app config for the inner application in case of nesting.
         Return None if the object isn't in any registered app config.
         """
+        # 1、检查app是否就绪
         self.check_apps_ready()
         candidates = []
+        # 2、
         for app_config in self.app_configs.values():
             if object_name.startswith(app_config.name):
                 subpath = object_name[len(app_config.name):]

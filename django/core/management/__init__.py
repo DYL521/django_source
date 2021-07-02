@@ -22,7 +22,9 @@ def find_commands(management_dir):
     Given a path to a management directory, return a list of all the command
     names that are available.
     """
+    # 'D:\\study_source\\django_source\\django\\core\\management\\commands'
     command_dir = os.path.join(management_dir, 'commands')
+
     return [name for _, name, is_pkg in pkgutil.iter_modules([command_dir])
             if not is_pkg and not name.startswith('_')]
 
@@ -32,6 +34,8 @@ def load_command_class(app_name, name):
     Given a command name and an application name, return the Command
     class instance. Allow all errors raised by the import process
     (ImportError, AttributeError) to propagate.
+    传入命令名和app名 返回命令的实例对象
+    允许 导入的错误引入的全部错误，往下专递
     """
     module = import_module('%s.management.commands.%s' % (app_name, name))
     return module.Command()
@@ -40,6 +44,7 @@ def load_command_class(app_name, name):
 @functools.lru_cache(maxsize=None)
 def get_commands():
     """
+    将命令的字典映射返回到其调用的应用程序
     Return a dictionary mapping command names to their callback applications.
 
     Look for a management.commands package in django.core, and in each
@@ -60,15 +65,27 @@ def get_commands():
     The dictionary is cached on the first call and reused on subsequent
     calls.
     """
+    # 1、
+    print("__path__[0]: {}".format(__path__[0])) # 当前文件的文件夹路径 D:\study_source\django_source\django\core\management
     commands = {name: 'django.core' for name in find_commands(__path__[0])}
-
+    # {'check': 'django.core', 'compilemessages': 'django.core', 'createcachetable': 'django.core', 'dbshell': 'django.core', 'diffsettings': 'django.core', 'dumpdata': 'django.core', 'flush': 'django.core',
+    # 'inspectdb': 'django.core', 'loaddata': 'django.core', 'makemessages': 'django.core', 'makemigrations': 'django.core', 'migrate': 'django.core', 'runserver': 'django.core',
+    # 'sendtestemail': 'django.core', 'shell': 'django.core', 'showmigrations': 'django.core', 'sqlflush': 'django.core', 'sqlmigrate': 'django.core', 'sqlsequencereset': 'django.core',
+    # 'squashmigrations': 'django.core', 'startapp': 'django.core', 'startproject': 'django.core', 'test': 'django.core', 'testserver': 'django.core'}
     if not settings.configured:
         return commands
-
+    # 2、已经ready的app配置 更新其模块的名字
     for app_config in reversed(list(apps.get_app_configs())):
         path = os.path.join(app_config.path, 'management')
         commands.update({name: app_config.name for name in find_commands(path)})
-
+    """
+    {'check': 'django.core', 'compilemessages': 'django.core', 'createcachetable': 'django.core', 'dbshell': 'django.core', 'diffsettings': 'django.core', 'dumpdata': 'django.core', 'flush': 'django.core',
+    'inspectdb': 'django.core', 'loaddata': 'django.core', 'makemessages': 'django.core', 'makemigrations': 'django.core', 'migrate': 'django.core', 'runserver': 'django.contrib.staticfiles',
+    'sendtestemail': 'django.core', 'shell': 'django.core', 'showmigrations': 'django.core', 'sqlflush': 'django.core', 'sqlmigrate': 'django.core', 'sqlsequencereset': 'django.core',
+    'squashmigrations': 'django.core', 'startapp': 'django.core', 'startproject': 'django.core', 'test': 'django.core', 'testserver': 'django.core', 'collectstatic': 'django.contrib.staticfiles',
+    'findstatic': 'django.contrib.staticfiles', 'clearsessions': 'django.contrib.sessions', 'remove_stale_contenttypes': 'django.contrib.contenttypes', 'changepassword': 'django.contrib.auth',
+    'createsuperuser': 'django.contrib.auth'}
+    """
     return commands
 
 
@@ -192,14 +209,19 @@ class ManagementUtility:
 
     def fetch_command(self, subcommand):
         """
+        找到subcommand 对象的实例
         Try to fetch the given subcommand, printing a message with the
         appropriate command called from the command line (usually
         "django-admin" or "manage.py") if it can't be found.
         """
+        # 1、获取app_name与命令对应的字典
         # Get commands outside of try block to prevent swallowing exceptions
         commands = get_commands()
+        print("commands: {}".format(commands.items()))
+
+        # 2、无法获取命令对应的app_name
         try:
-            app_name = commands[subcommand]
+            app_name = commands[subcommand] # 'django.contrib.staticfiles'
         except KeyError:
             if os.environ.get('DJANGO_SETTINGS_MODULE'):
                 # If `subcommand` is missing due to misconfigured settings, the
@@ -214,10 +236,13 @@ class ManagementUtility:
                 % (subcommand, self.prog_name)
             )
             sys.exit(1)
+        # 3、判断是否加载过对应的命令
         if isinstance(app_name, BaseCommand):
             # If the command is already loaded, use it directly.
+            # 3.1 加载过直接使用
             klass = app_name
         else:
+            # 3.2 加载app, 子命令对应的实例对象
             klass = load_command_class(app_name, subcommand)
         return klass
 
@@ -388,7 +413,7 @@ class ManagementUtility:
             # 7.3 获取帮助主文件
             sys.stdout.write(self.main_help_text() + '\n')
         else:
-            # 7.3 直接执行命令
+            # 7.3 直接执行命令 - 链式调用
             self.fetch_command(subcommand).run_from_argv(self.argv)
 
 

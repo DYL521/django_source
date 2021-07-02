@@ -97,6 +97,7 @@ class ModelBase(type):
         app_label = None
 
         # Look for an application configuration to attach the model to.
+        # 查找要将模型附加到的应用程序配置
         app_config = apps.get_containing_app_config(module)
 
         if getattr(meta, 'app_label', None) is None:

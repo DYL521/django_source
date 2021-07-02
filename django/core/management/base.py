@@ -285,6 +285,7 @@ class BaseCommand:
         args = cmd_options.pop('args', ())
         handle_default_options(options)
         try:
+            # 执行
             self.execute(*args, **cmd_options)
         except Exception as e:
             if options.traceback or not isinstance(e, CommandError):
@@ -306,10 +307,12 @@ class BaseCommand:
 
     def execute(self, *args, **options):
         """
-        Try to execute this command, performing system checks if needed (as
-        controlled by the ``requires_system_checks`` attribute, except if
-        force-skipped).
+        尝试执行这个命令  如果需要执行系统检查
+        Try to execute this command, performing system checks if needed
+        (as controlled by the ``requires_system_checks`` attribute, except if force-skipped).
+        除非强制跳过
         """
+        # 1、判断颜色相关信息
         if options['no_color']:
             self.style = no_style()
             self.stderr.style_func = None
@@ -318,9 +321,11 @@ class BaseCommand:
         if options.get('stderr'):
             self.stderr = OutputWrapper(options['stderr'], self.stderr.style_func)
 
+        # 2、TODO 这个干嘛的？ 2021年7月2日14:16:43
         saved_locale = None
         if not self.leave_locale_alone:
             # Deactivate translations, because django-admin creates database
+            # 停用 translations 因为django-admin创建数据库内容 ，像权限这些不应该包含translations
             # content like permissions, and those shouldn't contain any
             # translations.
             from django.utils import translation
@@ -328,11 +333,14 @@ class BaseCommand:
             translation.deactivate_all()
 
         try:
+            # 3、检查相关的选项
             if self.requires_system_checks and not options.get('skip_checks'):
                 self.check()
             if self.requires_migrations_checks:
                 self.check_migrations()
+            #4、 真正的执行 - nnd 接口，面向对象啊
             output = self.handle(*args, **options)
+
             if output:
                 if self.output_transaction:
                     connection = connections[options.get('database', DEFAULT_DB_ALIAS)]
