@@ -29,6 +29,7 @@ def convert_exception_to_response(get_response):
     no middleware leaks an exception and that the next middleware in the stack
     can rely on getting a response instead of an exception.
     """
+
     @wraps(get_response)
     def inner(request):
         try:
@@ -36,6 +37,7 @@ def convert_exception_to_response(get_response):
         except Exception as exc:
             response = response_for_exception(request, exc)
         return response
+
     return inner
 
 
@@ -124,3 +126,5 @@ def handle_uncaught_exception(request, resolver, exc_info):
     # Return an HttpResponse that displays a friendly error message.
     callback, param_dict = resolver.resolve_error_handler(500)
     return callback(request, **param_dict)
+
+

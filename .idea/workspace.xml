@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="964e2b30-7512-4aa3-bfb8-c755dd01aeb2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/checks/registry.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/checks/registry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/handlers/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/handlers/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/handlers/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/handlers/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/core/handlers/exception.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/handlers/exception.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/core/management/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/management/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/core/management/commands/runserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/management/commands/runserver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/db/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/db/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/myprojetc" />
+    <property name="last_opened_file_path" value="D:/study/changning_dcp" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="D:\study_source\django_source\node_modules\eslint" />
@@ -49,27 +49,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.test">
-    <configuration name="Test: tests.user_commands.tests.CommandTests.test_system_exit" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="django_source" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="D:\python_env\chengyun_backend\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="tests.user_commands.tests.CommandTests.test_system_exit" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Django server.Unnamed">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="django_source" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -118,13 +98,11 @@
     </configuration>
     <list>
       <item itemvalue="Django server.Unnamed" />
-      <item itemvalue="Django tests.Test: tests.user_commands.tests.CommandTests.test_system_exit" />
       <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.test" />
-        <item itemvalue="Django tests.Test: tests.user_commands.tests.CommandTests.test_system_exit" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +128,9 @@
       <workItem from="1625190576408" duration="1408000" />
       <workItem from="1625192016027" duration="6489000" />
       <workItem from="1625202415443" duration="12190000" />
-      <workItem from="1625215436727" duration="1052000" />
+      <workItem from="1625215436727" duration="3607000" />
+      <workItem from="1625452627148" duration="658000" />
+      <workItem from="1625461491903" duration="4777000" />
     </task>
     <servers />
   </component>
@@ -206,10 +186,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="603" y="0" width="584" height="680" key="#Unnamed/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625190956972" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1625192245010">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1625455552045">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625192245010" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455552045" />
     <state x="381" y="150" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1625192085771">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -219,50 +199,59 @@
     </state>
     <state x="1099" y="-687" width="490" height="582" key="#xdebugger.evaluate/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625201667437" />
     <state x="43" y="98" width="1237" height="582" key="#xdebugger.evaluate/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625212072759" />
-    <state x="420" y="99" key="FileChooserDialogImpl" timestamp="1625190902541">
+    <state x="420" y="99" key="FileChooserDialogImpl" timestamp="1625469523495">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="420" y="99" key="FileChooserDialogImpl/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625190902541" />
-    <state width="1237" height="228" key="GridCell.Tab.0.bottom" timestamp="1625215418633">
+    <state x="420" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1625469523495" />
+    <state width="618" height="172" key="GridCell.Tab.0.bottom" timestamp="1625463719894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.0.center" timestamp="1625215418632">
+    <state width="1237" height="316" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605827" />
+    <state width="618" height="172" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
+    <state width="618" height="172" key="GridCell.Tab.0.center" timestamp="1625463719894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418632" />
-    <state width="1237" height="228" key="GridCell.Tab.0.left" timestamp="1625215418632">
+    <state width="1237" height="316" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605827" />
+    <state width="618" height="172" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
+    <state width="618" height="172" key="GridCell.Tab.0.left" timestamp="1625463719893">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418632" />
-    <state width="1237" height="228" key="GridCell.Tab.0.right" timestamp="1625215418633">
+    <state width="1237" height="316" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605827" />
+    <state width="618" height="172" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1625463719893" />
+    <state width="618" height="172" key="GridCell.Tab.0.right" timestamp="1625463719894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.1.bottom" timestamp="1625215418633">
+    <state width="1237" height="316" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605827" />
+    <state width="618" height="172" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
+    <state width="618" height="172" key="GridCell.Tab.1.bottom" timestamp="1625463719894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.1.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.1.bottom/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.1.center" timestamp="1625215418633">
+    <state width="1237" height="316" key="GridCell.Tab.1.bottom/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605828" />
+    <state width="618" height="172" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
+    <state width="618" height="172" key="GridCell.Tab.1.center" timestamp="1625463719894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.1.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.1.center/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.1.left" timestamp="1625215418633">
+    <state width="1237" height="316" key="GridCell.Tab.1.center/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605828" />
+    <state width="618" height="172" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
+    <state width="618" height="172" key="GridCell.Tab.1.left" timestamp="1625463719894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.1.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.1.left/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.1.right" timestamp="1625215418633">
+    <state width="1237" height="316" key="GridCell.Tab.1.left/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605828" />
+    <state width="618" height="172" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
+    <state width="618" height="172" key="GridCell.Tab.1.right" timestamp="1625463719894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.1.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.1.right/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
+    <state width="1237" height="316" key="GridCell.Tab.1.right/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605828" />
+    <state width="618" height="172" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
     <state x="144" y="0" key="SettingsEditor" timestamp="1625192131830">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -271,29 +260,15 @@
       <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state width="968" height="525" key="XDebugger.FullValuePopup/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625201664118" />
-    <state x="332" y="95" width="617" height="490" key="find.popup" timestamp="1625210388364">
+    <state x="332" y="95" width="617" height="490" key="find.popup" timestamp="1625463850737">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625210388364" />
+    <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1625463850737" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/commands/runserver.py</url>
-          <line>103</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/commands/runserver.py</url>
-          <line>105</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/commands/runserver.py</url>
-          <line>107</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://D:/python_env/django_source/Lib/site-packages/Django-2.0.14.dev20190414145638-py3.6.egg/django/core/management/commands/runserver.py</url>
           <line>103</line>
@@ -303,16 +278,6 @@
           <url>file://D:/python_env/django_source/Lib/site-packages/Django-2.0.14.dev20190414145638-py3.6.egg/django/core/management/commands/runserver.py</url>
           <line>104</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>342</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>361</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
@@ -376,16 +341,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/base.py</url>
-          <line>315</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/base.py</url>
-          <line>317</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/base.py</url>
           <line>332</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
@@ -395,19 +350,24 @@
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/commands/runserver.py</url>
-          <line>113</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/commands/runserver.py</url>
-          <line>115</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/handlers/base.py</url>
           <line>126</line>
           <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/core/management/commands/runserver.py</url>
+          <line>128</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/db/utils.py</url>
+          <line>204</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/db/utils.py</url>
+          <line>105</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
