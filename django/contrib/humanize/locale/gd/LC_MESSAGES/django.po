@@ -27,7 +27,7 @@ msgstr "mh"
 msgid "st"
 msgstr "d"
 
-msgid "nd"
+msgid "md"
 msgstr "na"
 
 msgid "rd"

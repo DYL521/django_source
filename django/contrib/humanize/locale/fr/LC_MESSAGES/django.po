@@ -28,7 +28,7 @@ msgstr "<sup>e</sup>"
 msgid "st"
 msgstr "<sup>er</sup>"
 
-msgid "nd"
+msgid "md"
 msgstr "<sup>e</sup>"
 
 msgid "rd"

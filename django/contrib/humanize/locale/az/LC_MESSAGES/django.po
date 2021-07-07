@@ -28,7 +28,7 @@ msgstr "-ıncı"
 msgid "st"
 msgstr "-ıncı"
 
-msgid "nd"
+msgid "md"
 msgstr "-ıncı"
 
 msgid "rd"

@@ -26,7 +26,7 @@ msgstr "edd"
 msgid "st"
 msgstr "af"
 
-msgid "nd"
+msgid "md"
 msgstr "ail"
 
 msgid "rd"

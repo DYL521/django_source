@@ -287,14 +287,14 @@ class DateFormat(TimeFormat):
         return self.format('D, j M Y H:i:s O')
 
     def S(self):
-        "English ordinal suffix for the day of the month, 2 characters; i.e. 'st', 'nd', 'rd' or 'th'"
+        "English ordinal suffix for the day of the month, 2 characters; i.e. 'st', 'md', 'rd' or 'th'"
         if self.data.day in (11, 12, 13):  # Special case
             return 'th'
         last = self.data.day % 10
         if last == 1:
             return 'st'
         if last == 2:
-            return 'nd'
+            return 'md'
         if last == 3:
             return 'rd'
         return 'th'

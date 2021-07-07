@@ -27,7 +27,7 @@ msgstr "ആം"
 msgid "st"
 msgstr "ആം"
 
-msgid "nd"
+msgid "md"
 msgstr "ആം"
 
 msgid "rd"

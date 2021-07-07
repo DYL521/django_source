@@ -27,7 +27,7 @@ msgstr "তম"
 msgid "st"
 msgstr "ম"
 
-msgid "nd"
+msgid "md"
 msgstr "য়"
 
 msgid "rd"

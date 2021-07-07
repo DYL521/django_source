@@ -26,7 +26,7 @@ msgstr "မြောက်"
 msgid "st"
 msgstr "မြောက်"
 
-msgid "nd"
+msgid "md"
 msgstr "မြောက်"
 
 msgid "rd"

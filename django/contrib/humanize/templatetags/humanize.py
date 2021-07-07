@@ -23,7 +23,7 @@ def ordinal(value):
         value = int(value)
     except (TypeError, ValueError):
         return value
-    suffixes = (_('th'), _('st'), _('nd'), _('rd'), _('th'), _('th'), _('th'), _('th'), _('th'), _('th'))
+    suffixes = (_('th'), _('st'), _('md'), _('rd'), _('th'), _('th'), _('th'), _('th'), _('th'), _('th'))
     if value % 100 in (11, 12, 13):  # special case
         return mark_safe("%d%s" % (value, suffixes[0]))
     # Mark value safe so i18n does not break with <sup> or <sub> see #19988

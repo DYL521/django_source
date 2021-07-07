@@ -33,7 +33,7 @@ msgstr "ий"
 msgid "st"
 msgstr "ый"
 
-msgid "nd"
+msgid "md"
 msgstr "ой"
 
 msgid "rd"

@@ -29,7 +29,7 @@ msgstr "и"
 msgid "st"
 msgstr "ви"
 
-msgid "nd"
+msgid "md"
 msgstr "ри"
 
 msgid "rd"

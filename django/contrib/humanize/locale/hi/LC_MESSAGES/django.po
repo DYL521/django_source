@@ -27,7 +27,7 @@ msgstr "वाँ"
 msgid "st"
 msgstr "ला"
 
-msgid "nd"
+msgid "md"
 msgstr "रा"
 
 msgid "rd"

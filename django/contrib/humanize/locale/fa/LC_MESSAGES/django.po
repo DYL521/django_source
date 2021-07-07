@@ -31,7 +31,7 @@ msgstr "اُم"
 msgid "st"
 msgstr "ین"
 
-msgid "nd"
+msgid "md"
 msgstr "اُم"
 
 msgid "rd"

@@ -28,7 +28,7 @@ msgstr "-i"
 msgid "st"
 msgstr "-vi"
 
-msgid "nd"
+msgid "md"
 msgstr "-i"
 
 msgid "rd"
