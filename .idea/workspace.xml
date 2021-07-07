@@ -1,111 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="964e2b30-7512-4aa3-bfb8-c755dd01aeb2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/md/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/_chapter-07-命令解析.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-01-自动重启.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-02-runserver.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-03-wsgi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-04-asgi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-05-请求来了.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-06-应用及模型加载.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-08-settings懒加载.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-09-路由匹配.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/md/chapter-10-FBV&amp;CBV.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/gis/db/backends/postgis/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/gis/db/backends/postgis/schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/af/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/af/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ar/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ar/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ast/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ast/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/az/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/az/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/be/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/be/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/bg/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/bg/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/bn/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/bn/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/br/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/br/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/bs/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/bs/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ca/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ca/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/cs/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/cs/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/cy/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/cy/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/da/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/da/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/de/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/de/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/dsb/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/dsb/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/el/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/el/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/en/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/en/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/en_AU/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/en_AU/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/en_GB/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/en_GB/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/eo/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/eo/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/es/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/es/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/es_AR/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/es_AR/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/es_CO/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/es_CO/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/es_MX/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/es_MX/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/es_VE/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/es_VE/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/et/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/et/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/eu/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/eu/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/fa/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/fa/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/fi/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/fi/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/fr/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/fr/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/fy/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/fy/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ga/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ga/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/gd/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/gd/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/gl/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/gl/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/he/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/he/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/hi/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/hi/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/hr/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/hr/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/hsb/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/hsb/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/hu/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/hu/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/hy/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/hy/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ia/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ia/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/id/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/id/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/io/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/io/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/is/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/is/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/it/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/it/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ja/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ja/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ka/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ka/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/kk/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/kk/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/km/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/km/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/kn/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/kn/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ko/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ko/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/lb/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/lb/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/lt/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/lt/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/lv/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/lv/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/mk/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/mk/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ml/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ml/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/mn/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/mn/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/mr/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/mr/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/my/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/my/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/nb/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/nb/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ne/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ne/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/nl/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/nl/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/nn/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/nn/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/os/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/os/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/pa/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/pa/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/pl/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/pl/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/pt/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/pt/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/pt_BR/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/pt_BR/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ro/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ro/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ru/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ru/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/sk/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/sk/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/sl/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/sl/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/sq/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/sq/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/sr/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/sr/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/sr_Latn/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/sr_Latn/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/sv/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/sv/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/sw/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/sw/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ta/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ta/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/te/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/te/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/th/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/th/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/tr/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/tr/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/tt/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/tt/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/udm/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/udm/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/uk/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/uk/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/ur/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/ur/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/vi/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/vi/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/zh_Hans/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/zh_Hans/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/locale/zh_Hant/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/locale/zh_Hant/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/humanize/templatetags/humanize.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/humanize/templatetags/humanize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/utils/dateformat.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/dateformat.py" afterDir="false" />
-    </list>
+    <list default="true" id="964e2b30-7512-4aa3-bfb8-c755dd01aeb2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -235,7 +131,7 @@
       <workItem from="1625461491903" duration="4777000" />
       <workItem from="1625537142688" duration="669000" />
       <workItem from="1625553002844" duration="54000" />
-      <workItem from="1625639901685" duration="705000" />
+      <workItem from="1625639901685" duration="813000" />
     </task>
     <servers />
   </component>
@@ -365,11 +261,11 @@
       <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state width="968" height="525" key="XDebugger.FullValuePopup/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625201664118" />
-    <state x="332" y="95" width="617" height="490" key="find.popup" timestamp="1625463850737">
+    <state x="332" y="95" width="617" height="490" key="find.popup" timestamp="1625641071518">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625210388364" />
-    <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1625463850737" />
+    <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1625641071518" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
