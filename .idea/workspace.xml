@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="964e2b30-7512-4aa3-bfb8-c755dd01aeb2" name="Default Changelist" comment="" />
+    <list default="true" id="964e2b30-7512-4aa3-bfb8-c755dd01aeb2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/utils/autoreload.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/autoreload.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/md/chapter-01-自动重启.md" beforeDir="false" afterPath="$PROJECT_DIR$/md/chapter-01-自动重启.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,7 +135,8 @@
       <workItem from="1625461491903" duration="4777000" />
       <workItem from="1625537142688" duration="669000" />
       <workItem from="1625553002844" duration="54000" />
-      <workItem from="1625639901685" duration="813000" />
+      <workItem from="1625639901685" duration="2686000" />
+      <workItem from="1625705891220" duration="1820000" />
     </task>
     <servers />
   </component>
@@ -205,30 +210,30 @@
     </state>
     <state x="420" y="99" key="FileChooserDialogImpl/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625190902541" />
     <state x="420" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1625553043523" />
-    <state width="618" height="172" key="GridCell.Tab.0.bottom" timestamp="1625463719894">
+    <state width="1237" height="215" key="GridCell.Tab.0.bottom" timestamp="1625641193519">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
     <state width="1237" height="316" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605827" />
-    <state width="618" height="172" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
-    <state width="618" height="172" key="GridCell.Tab.0.center" timestamp="1625463719894">
+    <state width="1237" height="215" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1625641193519" />
+    <state width="1237" height="215" key="GridCell.Tab.0.center" timestamp="1625641193519">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
     <state width="1237" height="316" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605827" />
-    <state width="618" height="172" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
-    <state width="618" height="172" key="GridCell.Tab.0.left" timestamp="1625463719893">
+    <state width="1237" height="215" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1625641193519" />
+    <state width="1237" height="215" key="GridCell.Tab.0.left" timestamp="1625641193519">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
     <state width="1237" height="316" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605827" />
-    <state width="618" height="172" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1625463719893" />
-    <state width="618" height="172" key="GridCell.Tab.0.right" timestamp="1625463719894">
+    <state width="1237" height="215" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1625641193519" />
+    <state width="1237" height="215" key="GridCell.Tab.0.right" timestamp="1625641193519">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="301" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
     <state width="1237" height="316" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625455605827" />
-    <state width="618" height="172" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1625463719894" />
+    <state width="1237" height="215" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1625641193519" />
     <state width="618" height="172" key="GridCell.Tab.1.bottom" timestamp="1625463719894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -261,11 +266,11 @@
       <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state width="968" height="525" key="XDebugger.FullValuePopup/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625201664118" />
-    <state x="332" y="95" width="617" height="490" key="find.popup" timestamp="1625641071518">
+    <state x="332" y="95" width="617" height="490" key="find.popup" timestamp="1625641290333">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625210388364" />
-    <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1625641071518" />
+    <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1625641290333" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -369,6 +374,11 @@
           <url>file://$PROJECT_DIR$/django/db/utils.py</url>
           <line>105</line>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/utils/autoreload.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

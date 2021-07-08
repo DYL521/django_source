@@ -56,8 +56,10 @@ except ImportError:
 USE_INOTIFY = False
 try:
     # Test whether inotify is enabled and likely to work
+    # 测试inotify是否已启用并可能工作
     import pyinotify
 
+    # 1、引入文件系统监测模块
     fd = pyinotify.INotifyWrapper.create().inotify_init()
     if fd >= 0:
         USE_INOTIFY = True
@@ -82,6 +84,7 @@ _cached_filenames = []
 def gen_filenames(only_new=False):
     """
     Return a list of filenames referenced in sys.modules and translation files.
+    返回 sys.modules 和translation files的 文件列表
     """
     # N.B. ``list(...)`` is needed, because this runs in parallel with
     # application code which might be mutating ``sys.modules``, and this will
@@ -151,9 +154,13 @@ def reset_translations():
 
 def inotify_code_changed():
     """
-    Check for changed code using inotify. After being called
-    it blocks until a change event has been fired.
+    Check for changed code using inotify.
+    使用intoify 监测代码变化
+
+    After being called it blocks until a change event has been fired.
+    它会一直阻塞直到接收到触发回调事件
     """
+
     class EventHandler(pyinotify.ProcessEvent):
         modified_code = None
 
@@ -200,14 +207,18 @@ def inotify_code_changed():
 
 def code_changed():
     global _mtimes, _win
+    # 1、获取所有文件
     for filename in gen_filenames():
+        # 1.1 查询每个文件文件状态
         stat = os.stat(filename)
+        # 1.2 获取最后的修改时间
         mtime = stat.st_mtime
         if _win:
             mtime -= stat.st_ctime
         if filename not in _mtimes:
             _mtimes[filename] = mtime
             continue
+        # 1.5 比较文件是否修改
         if mtime != _mtimes[filename]:
             _mtimes = {}
             try:
@@ -265,21 +276,35 @@ def ensure_echo_on():
 
 
 def reloader_thread():
+    """
+    检测文件变化
+    """
+    # 1、
     ensure_echo_on()
+
+    # 2、如果成功引入pyinotify,使用pyinotify监测
     if USE_INOTIFY:
         fn = inotify_code_changed
+    # 3、通过文件的最后修改时间，监测代码变化
     else:
         fn = code_changed
+    # 4、持续检查
     while RUN_RELOADER:
         change = fn()
+        # 1、
         if change == FILE_MODIFIED:
             sys.exit(3)  # force reload
+        # 2、
         elif change == I18N_MODIFIED:
             reset_translations()
+        # 3、检查间隔1s
         time.sleep(1)
 
 
 def restart_with_reloader():
+    """
+    重启
+    """
     while True:
         args = [sys.executable] + ['-W%s' % o for o in sys.warnoptions] + sys.argv
         new_environ = os.environ.copy()
@@ -290,12 +315,15 @@ def restart_with_reloader():
 
 
 def python_reloader(main_func, args, kwargs):
+    # 判断是否第一次启动项目
     if os.environ.get("RUN_MAIN") == "true":
+        # 1、启动一个新的线程
         _thread.start_new_thread(main_func, args, kwargs)
         try:
             reloader_thread()
         except KeyboardInterrupt:
             pass
+    # 第二次启动项目，重启项目
     else:
         try:
             exit_code = restart_with_reloader()
@@ -307,11 +335,13 @@ def python_reloader(main_func, args, kwargs):
             pass
 
 
+# 自动重启入口
 def main(main_func, args=None, kwargs=None):
     if args is None:
         args = ()
     if kwargs is None:
         kwargs = {}
-
+    # 1、检查错误
     wrapped_main_func = check_errors(main_func)
+    # 2、启动监测
     python_reloader(wrapped_main_func, args, kwargs)

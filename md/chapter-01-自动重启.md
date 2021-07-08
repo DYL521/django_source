@@ -34,6 +34,12 @@ def reloader_thread():
         elif change == I18N_MODIFIED:
             reset_translations()
         time.sleep(1)
+        
+        
+"""
+Pyinotify: 用来监测文件系统的变化; 通过调用系统的inotify来实现通知的
+"""
+
 ```
 
 `code_changed` 根据每个文件的最好修改时间是否发生变更，则返回 `True` 达到重启的目的。
