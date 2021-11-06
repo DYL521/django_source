@@ -162,7 +162,7 @@ class BaseHandler:
 
         # If the response supports deferred rendering, apply template
         # response middleware and then render the response
-        # 6、如果上面的视图中间件返回有 response 对象且可被调用
+        # 6、如果上面的视图中间件返回有 response 对象且可被调用 .
         elif hasattr(response, 'render') and callable(response.render):
             # 6.1 执行含有process_template_response 方法的中间件
             for middleware_method in self._template_response_middleware:
