@@ -31,7 +31,7 @@ msgstr "º"
 msgid "st"
 msgstr "º"
 
-msgid "nd"
+msgid "md"
 msgstr "º"
 
 msgid "rd"

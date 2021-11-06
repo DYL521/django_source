@@ -40,6 +40,7 @@ def convert_exception_to_response(get_response):
     没有中间件泄漏异常并且堆栈中的下一个中间件
     可以依靠获得响应而不是异常。
     """
+
     @wraps(get_response)
     def inner(request):
         try:
@@ -48,6 +49,7 @@ def convert_exception_to_response(get_response):
         except Exception as exc:
             response = response_for_exception(request, exc)
         return response
+
     return inner
 
 
@@ -136,3 +138,5 @@ def handle_uncaught_exception(request, resolver, exc_info):
     # Return an HttpResponse that displays a friendly error message.
     callback, param_dict = resolver.resolve_error_handler(500)
     return callback(request, **param_dict)
+
+

@@ -28,7 +28,7 @@ msgstr "è"
 msgid "st"
 msgstr "r"
 
-msgid "nd"
+msgid "md"
 msgstr "n"
 
 msgid "rd"

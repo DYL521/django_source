@@ -27,7 +27,7 @@ msgstr "ti"
 msgid "st"
 msgstr ""
 
-msgid "nd"
+msgid "md"
 msgstr "ti"
 
 msgid "rd"

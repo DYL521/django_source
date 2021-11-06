@@ -33,7 +33,7 @@ msgstr "-y"
 msgid "st"
 msgstr "-szy"
 
-msgid "nd"
+msgid "md"
 msgstr "-gi"
 
 msgid "rd"

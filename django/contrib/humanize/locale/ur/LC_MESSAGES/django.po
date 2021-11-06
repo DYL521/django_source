@@ -25,7 +25,7 @@ msgstr "واں"
 msgid "st"
 msgstr "پہلا"
 
-msgid "nd"
+msgid "md"
 msgstr "دوسرا"
 
 msgid "rd"

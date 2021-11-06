@@ -29,7 +29,7 @@ msgstr "η"
 msgid "st"
 msgstr "η"
 
-msgid "nd"
+msgid "md"
 msgstr "η"
 
 msgid "rd"

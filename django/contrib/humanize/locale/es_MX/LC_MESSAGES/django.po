@@ -28,7 +28,7 @@ msgstr "to"
 msgid "st"
 msgstr "ro"
 
-msgid "nd"
+msgid "md"
 msgstr "do"
 
 msgid "rd"

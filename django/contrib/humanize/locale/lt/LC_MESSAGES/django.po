@@ -28,7 +28,7 @@ msgstr "-as"
 msgid "st"
 msgstr "-as"
 
-msgid "nd"
+msgid "md"
 msgstr "-as"
 
 msgid "rd"

@@ -27,7 +27,7 @@ msgstr "ú"
 msgid "st"
 msgstr "ú"
 
-msgid "nd"
+msgid "md"
 msgstr "ú"
 
 msgid "rd"

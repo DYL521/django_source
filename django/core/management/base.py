@@ -436,6 +436,7 @@ class BaseCommand:
         """
         from django.db.migrations.executor import MigrationExecutor
         try:
+            # python的魔术方法，调用到ConnectionHandler的__getitem__方法
             executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
         except ImproperlyConfigured:
             # No databases are configured (or the dummy one)

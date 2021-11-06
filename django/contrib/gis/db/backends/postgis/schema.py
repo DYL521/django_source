@@ -29,7 +29,7 @@ class PostGISSchemaEditor(DatabaseSchemaEditor):
             # Indexes on raster columns are based on the convex hull of the raster.
             field_column = self.rast_index_wrapper % field_column
         elif field.dim > 2 and not field.geography:
-            # Use "nd" ops which are fast on multidimensional cases
+            # Use "md" ops which are fast on multidimensional cases
             field_column = "%s %s" % (field_column, self.geom_index_ops_nd)
 
         return self.sql_create_index % {

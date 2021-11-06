@@ -27,7 +27,7 @@ msgid "st"
 msgstr ""
 
 #: contrib/humanize/templatetags/humanize.py:30
-msgid "nd"
+msgid "md"
 msgstr ""
 
 #: contrib/humanize/templatetags/humanize.py:30

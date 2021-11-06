@@ -31,7 +31,7 @@ msgstr "-ий"
 msgid "st"
 msgstr "-ий"
 
-msgid "nd"
+msgid "md"
 msgstr "-ий"
 
 msgid "rd"

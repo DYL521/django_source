@@ -27,7 +27,7 @@ msgstr "רביעי"
 msgid "st"
 msgstr "ראשון"
 
-msgid "nd"
+msgid "md"
 msgstr "שני"
 
 msgid "rd"

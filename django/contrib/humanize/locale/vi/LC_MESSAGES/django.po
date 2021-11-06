@@ -27,8 +27,8 @@ msgstr "th"
 msgid "st"
 msgstr "st"
 
-msgid "nd"
-msgstr "nd"
+msgid "md"
+msgstr "md"
 
 msgid "rd"
 msgstr "rd"

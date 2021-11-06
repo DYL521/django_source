@@ -31,7 +31,7 @@ msgstr "ul"
 msgid "st"
 msgstr "ul"
 
-msgid "nd"
+msgid "md"
 msgstr "lea"
 
 msgid "rd"

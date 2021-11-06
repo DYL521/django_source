@@ -29,7 +29,7 @@ msgstr "."
 msgid "st"
 msgstr "."
 
-msgid "nd"
+msgid "md"
 msgstr "."
 
 msgid "rd"

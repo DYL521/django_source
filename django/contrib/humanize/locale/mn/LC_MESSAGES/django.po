@@ -29,7 +29,7 @@ msgstr "-р"
 msgid "st"
 msgstr "-р"
 
-msgid "nd"
+msgid "md"
 msgstr "-р"
 
 msgid "rd"

@@ -27,7 +27,7 @@ msgstr "ਵਾਂ"
 msgid "st"
 msgstr "ਲਾਂ"
 
-msgid "nd"
+msgid "md"
 msgstr "ਜਾ"
 
 msgid "rd"

@@ -28,7 +28,7 @@ msgstr "番目"
 msgid "st"
 msgstr "番目"
 
-msgid "nd"
+msgid "md"
 msgstr "番目"
 
 msgid "rd"

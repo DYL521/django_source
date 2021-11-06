@@ -25,7 +25,7 @@ msgstr "че"
 msgid "st"
 msgstr "че"
 
-msgid "nd"
+msgid "md"
 msgstr "че"
 
 msgid "rd"

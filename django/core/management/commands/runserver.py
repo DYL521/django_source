@@ -119,9 +119,13 @@ class Command(BaseCommand):
         quit_command = 'CTRL-BREAK' if sys.platform == 'win32' else 'CONTROL-C'
 
         self.stdout.write("Performing system checks...\n\n")
+
+        # 1、检查整个项目
         self.check(display_num_errors=True)
         # Need to check migrations here, so can't use the
         # requires_migrations_check attribute.
+
+        # 2、检查数据库连接等等
         self.check_migrations()
         now = datetime.now().strftime('%B %d, %Y - %X')
         self.stdout.write(now)

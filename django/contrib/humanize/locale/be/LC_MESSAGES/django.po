@@ -28,7 +28,7 @@ msgstr "-ы"
 msgid "st"
 msgstr "-ы"
 
-msgid "nd"
+msgid "md"
 msgstr "-і"
 
 msgid "rd"

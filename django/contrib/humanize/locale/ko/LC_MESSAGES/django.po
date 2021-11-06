@@ -28,7 +28,7 @@ msgstr "번째"
 msgid "st"
 msgstr "번째"
 
-msgid "nd"
+msgid "md"
 msgstr "번째"
 
 msgid "rd"

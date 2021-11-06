@@ -26,7 +26,7 @@ msgstr "-ӕм"
 msgid "st"
 msgstr "-аг"
 
-msgid "nd"
+msgid "md"
 msgstr "-аг"
 
 msgid "rd"
