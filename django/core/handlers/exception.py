@@ -28,10 +28,22 @@ def convert_exception_to_response(get_response):
     This decorator is automatically applied to all middleware to ensure that
     no middleware leaks an exception and that the next middleware in the stack
     can rely on getting a response instead of an exception.
+
+    在异常到响应转换中包装给定的 get_response 可调用对象。
+
+    所有异常都将被转换。所有已知的 4xx 异常（Http404、
+    PermissionDenied、MultiPartParserError、SuspiciousOperation) 将是
+    转换为适当的响应，所有其他异常都将被
+    转换为 500 个响应。
+
+    此装饰器会自动应用于所有中间件，以确保
+    没有中间件泄漏异常并且堆栈中的下一个中间件
+    可以依靠获得响应而不是异常。
     """
     @wraps(get_response)
     def inner(request):
         try:
+            # get_response(request)
             response = get_response(request)
         except Exception as exc:
             response = response_for_exception(request, exc)

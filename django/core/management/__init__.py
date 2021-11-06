@@ -1,3 +1,5 @@
+
+#
 import functools
 import os
 import pkgutil
@@ -5,6 +7,7 @@ import sys
 from collections import OrderedDict, defaultdict
 from importlib import import_module
 
+# 初始化django
 import django
 from django.apps import apps
 from django.conf import settings
@@ -422,7 +425,7 @@ def execute_from_command_line(argv=None):
     执行命令
     """
     """Run a ManagementUtility."""
-    # 实例化对象
+    # 实例化对象: argv= ['manage.py', 'runserver', '8001']
     utility = ManagementUtility(argv)
     # 执行命令
     utility.execute()

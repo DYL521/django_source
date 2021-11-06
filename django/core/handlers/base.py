@@ -32,15 +32,16 @@ class BaseHandler:
         self._response_middleware = []
         self._exception_middleware = []
 
-        # 1、
+        # 1、异常转换成对应的返回格式
+        # _get_response
         handler = convert_exception_to_response(self._get_response)
 
-        #2、逆序遍历配置的中间件
+        # 2、逆序遍历配置的中间件 setting
         for middleware_path in reversed(settings.MIDDLEWARE):
-            # 2.1
+            # 2.1 动态导入模快
             middleware = import_string(middleware_path)
             try:
-                # 2.2
+                # 2.2 实例化中间件
                 mw_instance = middleware(handler)
             except MiddlewareNotUsed as exc:
                 if settings.DEBUG:
@@ -54,12 +55,13 @@ class BaseHandler:
                 raise ImproperlyConfigured(
                     'Middleware factory %s returned None.' % middleware_path
                 )
-
+            # 插入中间件实现的方法
             if hasattr(mw_instance, 'process_view'):
-                #
                 self._view_middleware.insert(0, mw_instance.process_view)
+
             if hasattr(mw_instance, 'process_template_response'):
                 self._template_response_middleware.append(mw_instance.process_template_response)
+
             if hasattr(mw_instance, 'process_exception'):
                 self._exception_middleware.append(mw_instance.process_exception)
 
@@ -82,8 +84,11 @@ class BaseHandler:
     def get_response(self, request):
         """Return an HttpResponse object for the given HttpRequest."""
         # Setup default url resolver for this thread
+        # 设置路由匹配
         set_urlconf(settings.ROOT_URLCONF)
 
+        # _middleware_chain 是中间件是一个类的实例： 加上括号调用的就是类的__call__方法
+        #  django.utils.deprecation.py的 MiddlewareMixin
         response = self._middleware_chain(request)
 
         response._closable_objects.append(request)
@@ -110,28 +115,34 @@ class BaseHandler:
         _get_response 是被respoonse/request中间件包装在最里面的
         """
         response = None
-        # 1、
+        # 1、根据setting配置的url节点导入一个解析器对象
         if hasattr(request, 'urlconf'):
             urlconf = request.urlconf
             set_urlconf(urlconf)
             resolver = get_resolver(urlconf)
         else:
             resolver = get_resolver()
-        # 2、 匹配view
+
+        # 2、 根据访问的路由获取 django 路由解析器中的匹配的视图
         resolver_match = resolver.resolve(request.path_info)
         callback, callback_args, callback_kwargs = resolver_match
         request.resolver_match = resolver_match
 
         # Apply view middleware
-        # 3、调用view的中间件
+        # 3、执行含有 `process_view` 方法的中间件
         for middleware_method in self._view_middleware:
             response = middleware_method(request, callback, callback_args, callback_kwargs)
             if response:
                 break
-        # 4、
+        # 4、如果响应对象没有拦截，执行视图函数
         if response is None:
+            # 4.1 保证视图的原子性
             wrapped_callback = self.make_view_atomic(callback)
             try:
+                """
+                    Django视图的两种写法：FBV 和CBV
+                    CBV 会调用as_view 方法，内部实现了view函数，然后分发到类的dispatch
+                """
                 response = wrapped_callback(request, *callback_args, **callback_kwargs)
             except Exception as e:
                 response = self.process_exception_by_middleware(e, request)
@@ -139,9 +150,9 @@ class BaseHandler:
         # Complain if the view returned None (a common error).
         # 5、 判断是FBV 还是CBV
         if response is None:
-            if isinstance(callback, types.FunctionType):    # FBV
+            if isinstance(callback, types.FunctionType):  # FBV
                 view_name = callback.__name__
-            else:                                           # CBV
+            else:  # CBV
                 view_name = callback.__class__.__name__ + '.__call__'
 
             raise ValueError(
@@ -151,8 +162,9 @@ class BaseHandler:
 
         # If the response supports deferred rendering, apply template
         # response middleware and then render the response
-        # 6、
+        # 6、如果上面的视图中间件返回有 response 对象且可被调用
         elif hasattr(response, 'render') and callable(response.render):
+            # 6.1 执行含有process_template_response 方法的中间件
             for middleware_method in self._template_response_middleware:
                 response = middleware_method(request, response)
                 # Complain if the template response middleware returned None (a common error).
@@ -166,6 +178,7 @@ class BaseHandler:
             try:
                 response = response.render()
             except Exception as e:
+                # 6.2 如果发生异常，这里可以捕获，执行含有process_exception对的中间件
                 response = self.process_exception_by_middleware(e, request)
 
         return response

@@ -155,6 +155,10 @@ class WSGIRequestHandler(simple_server.WSGIRequestHandler):
 
 
 def run(addr, port, wsgi_handler, ipv6=False, threading=False, server_cls=WSGIServer):
+    """
+        运行
+    """
+
     server_address = (addr, port)
     if threading:
         httpd_cls = type('WSGIServer', (socketserver.ThreadingMixIn, server_cls), {})
@@ -169,5 +173,6 @@ def run(addr, port, wsgi_handler, ipv6=False, threading=False, server_cls=WSGISe
         # and will prevent the need to kill the server manually if a thread
         # isn't terminating correctly.
         httpd.daemon_threads = True
+    # from django.core.handlers.wsgi import WSGIHandler
     httpd.set_app(wsgi_handler)
     httpd.serve_forever()

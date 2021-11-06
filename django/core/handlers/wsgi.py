@@ -141,9 +141,16 @@ class WSGIHandler(base.BaseHandler):
         self.load_middleware()
 
     def __call__(self, environ, start_response):
+        """
+        请求转发
+        """
         set_script_prefix(get_script_name(environ))
         signals.request_started.send(sender=self.__class__, environ=environ)
+
+        # 封装 `request` 请求对象 处理类是 -> WSGIRequest
         request = self.request_class(environ)
+
+        #
         response = self.get_response(request)
 
         response._handler_class = self.__class__
@@ -219,3 +226,26 @@ def get_str_from_wsgi(environ, key, default):
     """
     value = get_bytes_from_wsgi(environ, key, default)
     return value.decode(errors='replace')
+
+"""
+    https://www.python.org/dev/peps/pep-0333/
+    https://juejin.cn/post/6844904064572981256
+
+    WSGI: web server gatway interfacep [协议]
+
+    WSGI有两个方面：
+        1、服务器方面[网关]
+        2、应用程序[框架]方面
+
+    A、WSGI对于application对象有如下三点的要求
+        1、必须是一个可调用的对象
+        2、接受两个必选的参数 environ、start_respinse
+        3、返回值必须是可迭代对象，用来表示http body
+
+    B、web server 负责从客户端接收请求，将 request 转发给 application，
+        继而将 application 返回的 response 返回给客户端。
+        application 接收由 web server 转发的 request，并将处理结果返回给 server。
+
+像 django、falsk、bottle 等框架都有自己实现的简单 WSGI Server，但是这种一般用于开发环境下调试，生产环境下建议使用其它的 wsgi server。
+
+"""

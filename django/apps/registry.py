@@ -214,7 +214,7 @@ class Apps:
         app_models = self.all_models[app_label]
         if model_name in app_models:
             if (model.__name__ == app_models[model_name].__name__ and
-                    model.__module__ == app_models[model_name].__module__):
+                model.__module__ == app_models[model_name].__module__):
                 warnings.warn(
                     "Model '%s.%s' was already registered. "
                     "Reloading models is not advised as it can lead to inconsistencies, "
@@ -399,6 +399,7 @@ class Apps:
             def apply_next_model(model):
                 next_function = partial(apply_next_model.func, model)
                 self.lazy_model_operation(next_function, *more_models)
+
             apply_next_model.func = function
 
             # If the model has already been imported and registered, partially
@@ -422,4 +423,5 @@ class Apps:
             function(model)
 
 
+# app 注册
 apps = Apps(installed_apps=None)

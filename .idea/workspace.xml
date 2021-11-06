@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="964e2b30-7512-4aa3-bfb8-c755dd01aeb2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/django_source.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/django_source.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/checks/registry.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/checks/registry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/apps/registry.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/apps/registry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/conf/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/conf/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/core/handlers/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/handlers/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/core/handlers/exception.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/handlers/exception.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/core/handlers/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/handlers/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/management/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/management/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/management/commands/runserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/management/commands/runserver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/core/management/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/management/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/core/servers/basehttp.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/servers/basehttp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/utils/autoreload.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/autoreload.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/utils/deprecation.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/deprecation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/utils/log.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/utils/module_loading.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/module_loading.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myprojetc/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/myprojetc/manage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,20 +45,20 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/myprojetc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="D:\study_source\django_source\node_modules\eslint" />
+    <property name="node.js.selected.package.eslint" value="D:/study_source/django_source/node_modules/eslint" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Django Server.Unnamed">
     <configuration name="Test: tests.user_commands.tests.CommandTests.test_system_exit" type="DjangoTestsConfigurationType" temporary="true">
       <module name="django_source" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -100,13 +109,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="myprojetc.settings" />
       </envs>
-      <option name="SDK_HOME" value="D:\python_env\django_source_env\Scripts\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
+      <option name="port" value="8001" />
       <option name="host" value="" />
       <option name="additionalOptions" value="" />
       <option name="browserUrl" value="" />
@@ -117,7 +126,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Django server.Unnamed" />
+      <item itemvalue="Django Server.Unnamed" />
       <item itemvalue="Django tests.Test: tests.user_commands.tests.CommandTests.test_system_exit" />
       <item itemvalue="Python.test" />
     </list>
@@ -128,7 +137,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -151,31 +160,24 @@
       <workItem from="1625192016027" duration="6489000" />
       <workItem from="1625202415443" duration="12190000" />
       <workItem from="1625215436727" duration="1052000" />
+      <workItem from="1625402676269" duration="1933000" />
+      <workItem from="1625966179067" duration="25000" />
+      <workItem from="1628233784887" duration="242000" />
+      <workItem from="1635945013265" duration="3803000" />
+      <workItem from="1636178712536" duration="651000" />
+      <workItem from="1636179380646" duration="5186000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="my_2.0.6_release" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -200,81 +202,7 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="603" y="0" width="584" height="680" key="#Unnamed" timestamp="1625190956972">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="603" y="0" width="584" height="680" key="#Unnamed/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625190956972" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1625192245010">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625192245010" />
-    <state x="381" y="150" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1625192085771">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="381" y="150" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625192085771" />
-    <state x="43" y="98" width="1237" height="582" key="#xdebugger.evaluate" timestamp="1625212072759">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="1099" y="-687" width="490" height="582" key="#xdebugger.evaluate/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625201667437" />
-    <state x="43" y="98" width="1237" height="582" key="#xdebugger.evaluate/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625212072759" />
-    <state x="420" y="99" key="FileChooserDialogImpl" timestamp="1625190902541">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="420" y="99" key="FileChooserDialogImpl/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625190902541" />
-    <state width="1237" height="228" key="GridCell.Tab.0.bottom" timestamp="1625215418633">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1877" height="301" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.0.center" timestamp="1625215418632">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1877" height="301" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418632" />
-    <state width="1237" height="228" key="GridCell.Tab.0.left" timestamp="1625215418632">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1877" height="301" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418632" />
-    <state width="1237" height="228" key="GridCell.Tab.0.right" timestamp="1625215418633">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1877" height="301" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.1.bottom" timestamp="1625215418633">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1877" height="301" key="GridCell.Tab.1.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.1.bottom/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.1.center" timestamp="1625215418633">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1877" height="301" key="GridCell.Tab.1.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.1.center/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.1.left" timestamp="1625215418633">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1877" height="301" key="GridCell.Tab.1.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.1.left/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state width="1237" height="228" key="GridCell.Tab.1.right" timestamp="1625215418633">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1877" height="301" key="GridCell.Tab.1.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625202227638" />
-    <state width="1237" height="228" key="GridCell.Tab.1.right/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625215418633" />
-    <state x="144" y="0" key="SettingsEditor" timestamp="1625192131830">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="144" y="0" key="SettingsEditor/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625192131830" />
-    <state width="968" height="525" key="XDebugger.FullValuePopup" timestamp="1625201664118">
-      <screen x="0" y="-1080" width="1920" height="1040" />
-    </state>
-    <state width="968" height="525" key="XDebugger.FullValuePopup/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1625201664118" />
-    <state x="332" y="95" width="617" height="490" key="find.popup" timestamp="1625210388364">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="332" y="95" width="617" height="490" key="find.popup/0.0.1280.680/0.-1080.1920.1040@0.0.1280.680" timestamp="1625210388364" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -306,73 +234,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>342</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>361</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>394</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>416</line>
+          <line>419</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>218</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>224</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>74</line>
+          <line>77</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>69</line>
+          <line>72</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>88</line>
+          <line>91</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>375</line>
+          <line>378</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>376</line>
+          <line>379</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
-          <line>377</line>
+          <line>380</line>
           <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/base.py</url>
-          <line>278</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/django/core/management/base.py</url>
-          <line>279</line>
-          <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/management/base.py</url>
@@ -406,15 +299,40 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/django/core/handlers/base.py</url>
-          <line>126</line>
+          <line>132</line>
           <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/core/management/base.py</url>
+          <line>279</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
+          <line>428</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
+          <line>345</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/core/management/__init__.py</url>
+          <line>346</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/utils/deprecation.py</url>
+          <line>107</line>
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/django_source$test.coverage" NAME="test Coverage Results" MODIFIED="1625212225775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/django_source$Test__tests_get_object_or_404_tests_GetObjectOr404Tests.coverage" NAME="Test: tests.get_object_or_404.tests.GetObjectOr404Tests Coverage Results" MODIFIED="1625191685663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_source$Test__tests_user_commands_tests_CommandTests_test_system_exit.coverage" NAME="Test: tests.user_commands.tests.CommandTests.test_system_exit Coverage Results" MODIFIED="1625191790756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_source$test.coverage" NAME="test Coverage Results" MODIFIED="1625212225775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

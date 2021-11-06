@@ -56,6 +56,7 @@ except ImportError:
 USE_INOTIFY = False
 try:
     # Test whether inotify is enabled and likely to work
+    # 文件系统变化
     import pyinotify
 
     fd = pyinotify.INotifyWrapper.create().inotify_init()
@@ -199,15 +200,22 @@ def inotify_code_changed():
 
 
 def code_changed():
+    """
+    检测文件修改
+    """
     global _mtimes, _win
+    # 获取所有文件
     for filename in gen_filenames():
+        # os查看每个文件的状态
         stat = os.stat(filename)
+        # 最后的修改时间
         mtime = stat.st_mtime
         if _win:
             mtime -= stat.st_ctime
         if filename not in _mtimes:
             _mtimes[filename] = mtime
             continue
+        # 比较文件是否修改
         if mtime != _mtimes[filename]:
             _mtimes = {}
             try:
@@ -265,11 +273,16 @@ def ensure_echo_on():
 
 
 def reloader_thread():
+    """
+    监听文件变化
+    """
     ensure_echo_on()
     if USE_INOTIFY:
         fn = inotify_code_changed
     else:
+        # 根据每个文件的最后修改时间是否发生变更
         fn = code_changed
+
     while RUN_RELOADER:
         change = fn()
         if change == FILE_MODIFIED:
@@ -280,6 +293,9 @@ def reloader_thread():
 
 
 def restart_with_reloader():
+    """
+    重启进程
+    """
     while True:
         args = [sys.executable] + ['-W%s' % o for o in sys.warnoptions] + sys.argv
         new_environ = os.environ.copy()

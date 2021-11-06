@@ -62,6 +62,9 @@ DEFAULT_LOGGING = {
 
 
 def configure_logging(logging_config, logging_settings):
+    """
+    配置日志模板
+    """
     if logging_config:
         # First find the logging configuration function ...
         logging_config_func = import_string(logging_config)
@@ -137,6 +140,7 @@ class CallbackFilter(logging.Filter):
     takes the record-to-be-logged as its only parameter) to decide whether to
     log a record.
     """
+
     def __init__(self, callback):
         self.callback = callback
 

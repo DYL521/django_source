@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 import os
 import sys
+import logging
+
+logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":
     # 设置环境变量
@@ -14,4 +17,6 @@ if __name__ == "__main__":
             "forget to activate a virtual environment?"
         ) from exc
     # 执行将用户传入的参数传入到内部执行 ： Python manage.py runserver :  runserver 就会作为参数传入内部
+    logger.info("step:1 {}".format(sys.argv))
     execute_from_command_line(sys.argv)
+

@@ -1,5 +1,8 @@
 import inspect
 import warnings
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class RemovedInDjango30Warning(PendingDeprecationWarning):
@@ -27,6 +30,7 @@ class warn_about_renamed_method:
                 (self.class_name, self.old_method_name, self.new_method_name),
                 self.deprecation_warning, 2)
             return f(*args, **kwargs)
+
         return wrapped
 
 
@@ -83,16 +87,27 @@ class DeprecationInstanceCheck(type):
 
 
 class MiddlewareMixin:
+    """
+        中间件的方法调用：继承它的子类并没有实现 __call__ 方法
+    """
+
     def __init__(self, get_response=None):
         self.get_response = get_response
         super().__init__()
 
     def __call__(self, request):
+        """
+            只要调用中间件都转入到类这里
+        """
+        logger.info("<============开始执行中间件=================>")
         response = None
         if hasattr(self, 'process_request'):
             response = self.process_request(request)
+
         if not response:
             response = self.get_response(request)
+
         if hasattr(self, 'process_response'):
             response = self.process_response(request, response)
+        logger.info("<============执行中间件结束=================>")
         return response

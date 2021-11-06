@@ -25,6 +25,7 @@ class LazySettings(LazyObject):
     The user can manually configure settings prior to using them. Otherwise,
     Django uses the settings module pointed to by DJANGO_SETTINGS_MODULE.
     """
+
     def _setup(self, name=None):
         """
         Load the settings module pointed to by the environment variable. This
@@ -118,7 +119,7 @@ class Settings:
                 setting_value = getattr(mod, setting)
 
                 if (setting in tuple_settings and
-                        not isinstance(setting_value, (list, tuple))):
+                    not isinstance(setting_value, (list, tuple))):
                     raise ImproperlyConfigured("The %s setting must be a list or a tuple. " % setting)
                 setattr(self, setting, setting_value)
                 self._explicit_settings.add(setting)
@@ -134,7 +135,7 @@ class Settings:
             # this file, no check happens and it's harmless.
             zoneinfo_root = '/usr/share/zoneinfo'
             if (os.path.exists(zoneinfo_root) and not
-                    os.path.exists(os.path.join(zoneinfo_root, *(self.TIME_ZONE.split('/'))))):
+            os.path.exists(os.path.join(zoneinfo_root, *(self.TIME_ZONE.split('/'))))):
                 raise ValueError("Incorrect timezone setting: %s" % self.TIME_ZONE)
             # Move the time zone info into os.environ. See ticket #2315 for why
             # we don't do this unconditionally (breaks Windows).
@@ -199,4 +200,5 @@ class UserSettingsHolder:
         }
 
 
+# 加载配置
 settings = LazySettings()
