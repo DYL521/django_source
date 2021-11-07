@@ -205,6 +205,7 @@ def null_javascript_catalog(request, domain=None, packages=None):
 class JavaScriptCatalog(View):
     """
     Return the selected language catalog as a JavaScript library.
+    #将所选语言目录作为JavaScript库返回。
 
     Receive the list of packages to check for translations in the `packages`
     kwarg either from the extra dictionary passed to the url() function or as a

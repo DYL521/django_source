@@ -55,6 +55,10 @@ class LoginView(SuccessURLAllowedHostsMixin, FormView):
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)
     def dispatch(self, request, *args, **kwargs):
+        """
+        self.redirect_authenticated_user: 登陆状态
+        self.request.user.is_authenticated:
+        """
         if self.redirect_authenticated_user and self.request.user.is_authenticated:
             redirect_to = self.get_success_url()
             if redirect_to == self.request.path:
@@ -66,6 +70,9 @@ class LoginView(SuccessURLAllowedHostsMixin, FormView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
+        """
+        重定向到成功的url
+        """
         url = self.get_redirect_url()
         return url or resolve_url(settings.LOGIN_REDIRECT_URL)
 
@@ -91,7 +98,11 @@ class LoginView(SuccessURLAllowedHostsMixin, FormView):
         return kwargs
 
     def form_valid(self, form):
+
         """Security check complete. Log the user in."""
+        """
+        安全检查完成。让用户登录。
+        """
         auth_login(self.request, form.get_user())
         return HttpResponseRedirect(self.get_success_url())
 

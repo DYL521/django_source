@@ -79,9 +79,14 @@ class View:
         return view
 
     def dispatch(self, request, *args, **kwargs):
-        # Try to dispatch to the right method; if a method doesn't exist,
-        # defer to the error handler. Also defer to the error handler if the
-        # request method isn't on the approved list.
+        # Try to dispatch to the right method;
+        # if a method doesn't exist, defer to the error handler.
+        # Also defer to the error handler if the request method isn't on the approved list.
+        """
+        尝试转发到正确的方法，如果方法不存在，遵循这个错误流程
+
+        如果请求方法不在批准的列表中，也请遵循错误处理程序。
+        """
         if request.method.lower() in self.http_method_names:
             handler = getattr(self, request.method.lower(), self.http_method_not_allowed)
         else:

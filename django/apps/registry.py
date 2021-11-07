@@ -65,6 +65,7 @@ class Apps:
 
         It is thread-safe and idempotent, but not reentrant.
         """
+        # 不可重入
         if self.ready:
             return
 
@@ -97,6 +98,7 @@ class Apps:
                 app_config.apps = self
 
             # Check for duplicate app names.
+            # 检测app名称的唯一性
             counts = Counter(
                 app_config.name for app_config in self.app_configs.values())
             duplicates = [
@@ -113,13 +115,13 @@ class Apps:
                 app_config.import_models()
 
             self.clear_cache()
-
+            # 标记加载完成
             self.models_ready = True
 
             # Phase 3: run ready() methods of app configs.
             for app_config in self.get_app_configs():
                 app_config.ready()
-
+            # 初始化完成
             self.ready = True
 
     def check_apps_ready(self):

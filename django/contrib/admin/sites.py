@@ -334,6 +334,7 @@ class AdminSite:
 
     def i18n_javascript(self, request, extra_context=None):
         """
+        显示Django管理员需要的i18n JavaScript。
         Display the i18n JavaScript that the Django admin requires.
 
         `extra_context` is unused but present for consistency with the other

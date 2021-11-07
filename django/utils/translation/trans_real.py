@@ -85,6 +85,7 @@ def to_language(locale):
 class DjangoTranslation(gettext_module.GNUTranslations):
     """
     Set up the GNUTranslations context with regard to output charset.
+    设置与输出字符集有关的GNUTranslations上下文。
 
     This translation object will be constructed out of multiple GNUTranslations
     objects by merging their catalogs. It will construct an object for the

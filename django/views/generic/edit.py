@@ -5,6 +5,9 @@ from django.views.generic.base import ContextMixin, TemplateResponseMixin, View
 from django.views.generic.detail import (
     BaseDetailView, SingleObjectMixin, SingleObjectTemplateResponseMixin,
 )
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class FormMixin(ContextMixin):
@@ -128,6 +131,8 @@ class ModelFormMixin(FormMixin, SingleObjectMixin):
 
 class ProcessFormView(View):
     """Render a form on GET and processes it on POST."""
+    """在GET上呈现表单并在POST上处理它。"""
+
     def get(self, request, *args, **kwargs):
         """Handle GET requests: instantiate a blank version of the form."""
         return self.render_to_response(self.get_context_data())
@@ -136,7 +141,10 @@ class ProcessFormView(View):
         """
         Handle POST requests: instantiate a form instance with the passed
         POST variables and then check if it's valid.
+
+        处理POST请求：使用传递的发布变量，然后检查它是否有效。
         """
+        logger.info("<============POST=================>")
         form = self.get_form()
         if form.is_valid():
             return self.form_valid(form)
@@ -163,6 +171,7 @@ class BaseCreateView(ModelFormMixin, ProcessFormView):
 
     Using this base class requires subclassing to provide a response mixin.
     """
+
     def get(self, request, *args, **kwargs):
         self.object = None
         return super().get(request, *args, **kwargs)
@@ -185,6 +194,7 @@ class BaseUpdateView(ModelFormMixin, ProcessFormView):
 
     Using this base class requires subclassing to provide a response mixin.
     """
+
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().get(request, *args, **kwargs)
