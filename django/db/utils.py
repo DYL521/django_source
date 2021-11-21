@@ -230,6 +230,7 @@ class ConnectionHandler:
 class ConnectionRouter:
     def __init__(self, routers=None):
         """
+        如果未指定路由器，则默认为settings.DATABASE
         If routers is not specified, default to settings.DATABASE_ROUTERS.
         """
         self._routers = routers

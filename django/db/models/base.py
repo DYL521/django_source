@@ -571,6 +571,7 @@ class Model(metaclass=ModelBase):
 
     def get_deferred_fields(self):
         """
+        返回包含此实例的延迟字段名称的集合。
         Return a set containing names of deferred fields for this instance.
         """
         return {
@@ -656,9 +657,10 @@ class Model(metaclass=ModelBase):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         """
+        保存实例
         Save the current instance. Override this in a subclass if you want to
         control the saving process.
-
+        ”必须是SQL插入或更新（或用于非SQL后端）
         The 'force_insert' and 'force_update' parameters can be used to insist
         that the "save" must be an SQL insert or update (or equivalent for
         non-SQL backends), respectively. Normally, they should not be set.
@@ -685,12 +687,13 @@ class Model(metaclass=ModelBase):
                         "save() prohibited to prevent data loss due to "
                         "unsaved related object '%s'." % field.name
                     )
-
+        # 2、默认defalut
         using = using or router.db_for_write(self.__class__, instance=self)
         if force_insert and (force_update or update_fields):
             raise ValueError("Cannot force both insert and updating in model saving.")
-
+        # 3、
         deferred_fields = self.get_deferred_fields()
+        # 4、更新字段为空，跳过save()
         if update_fields is not None:
             # If update_fields is empty, skip the save. We do also check for
             # no-op saves later on for inheritance cases. This bailout is
@@ -714,7 +717,9 @@ class Model(metaclass=ModelBase):
                 raise ValueError("The following fields do not exist in this "
                                  "model or are m2m fields: %s"
                                  % ', '.join(non_model_fields))
-
+        # 4、
+        # 如果保存到同一数据库，并且此模型被延迟，则
+        # 自动对加载的字段执行“更新字段”保存。
         # If saving to the same database, and this model is deferred, then
         # automatically do a "update_fields" save on the loaded fields.
         elif not force_insert and deferred_fields and using == self._state.db:
@@ -736,6 +741,10 @@ class Model(metaclass=ModelBase):
         Handle the parts of saving which should be done only once per save,
         yet need to be done in raw saves, too. This includes some sanity
         checks and signal sending.
+
+        处理每次保存只能执行一次的保存部分，
+        但也需要在原始保存中完成。这包括一些理智
+        检查并发送信号。
 
         The 'raw' argument is telling save_base not to save any parent
         models and not to do any changes to the values before save. This

@@ -15,7 +15,7 @@ NONE_ID = _make_id(None)
 # A marker for caching
 NO_RECEIVERS = object()
 
-
+# 观察者模式
 class Signal:
     """
     Base class for all signals
