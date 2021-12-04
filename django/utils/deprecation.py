@@ -98,15 +98,17 @@ class MiddlewareMixin:
     def __call__(self, request):
         """
             只要调用中间件都转入到类这里
+            HttpRequest -> Middleware -> View -> Middleware -> HttpResponse
         """
         logger.info("<============开始执行中间件=================>")
         response = None
+        # 1、执行视图前
         if hasattr(self, 'process_request'):
             response = self.process_request(request)
-
+        # 2、执行视图: 它将调用列表中的下一个中间件。如果这是最后一个中间件，则将调用该视图
         if not response:
             response = self.get_response(request)
-
+        # 3、执行视图后
         if hasattr(self, 'process_response'):
             response = self.process_response(request, response)
         logger.info("<============执行中间件结束=================>")

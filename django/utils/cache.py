@@ -91,6 +91,8 @@ def get_max_age(response):
     """
     Return the max-age from the response Cache-Control header as an integer,
     or None if it wasn't found or wasn't an integer.
+    以整数形式从响应缓存控制标头返回最大年龄，
+    如果找不到或不是整数，则为“无”。
     """
     if not response.has_header('Cache-Control'):
         return
@@ -296,6 +298,7 @@ def patch_vary_headers(response, newheaders):
 def has_vary_header(response, header_query):
     """
     Check to see if the response has a given header name in its Vary header.
+    检查响应的Vary头中是否有给定的头名称。
     """
     if not response.has_header('Vary'):
         return False
