@@ -150,7 +150,7 @@ class WSGIHandler(base.BaseHandler):
         # 封装 `request` 请求对象 处理类是 -> WSGIRequest
         request = self.request_class(environ)
 
-        #
+        # 请求类
         response = self.get_response(request)
 
         response._handler_class = self.__class__
